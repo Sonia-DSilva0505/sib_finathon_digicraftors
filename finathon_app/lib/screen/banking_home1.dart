@@ -12,7 +12,9 @@ import '../utils/banking_data_generator.dart';
 import '../utils/banking_images.dart';
 import '../utils/banking_widget.dart';
 import '../utils/icon_text.dart';
+
 List<IconText?> icons = List.generate(8, (index) => null);
+
 class BankingHome1 extends StatefulWidget {
   static String tag = '/BankingHome1';
 
@@ -29,7 +31,7 @@ class BankingHome1State extends State<BankingHome1> {
   late List<BankingHomeModel> mList1;
   late List<BankingHomeModel2> mList2;
 
-   List<DragTarget<IconText>> dragTargets = List.generate(8, (index) {
+  List<DragTarget<IconText>> dragTargets = List.generate(8, (index) {
     return DragTarget<IconText>(
       onAccept: (data) {
         if (icons[index] == null) {
@@ -65,7 +67,6 @@ class BankingHome1State extends State<BankingHome1> {
     );
   });
 
-
   @override
   void initState() {
     super.initState();
@@ -73,10 +74,16 @@ class BankingHome1State extends State<BankingHome1> {
     pageLength = 3;
     mList1 = bankingHomeList1();
     mList2 = bankingHomeList2();
+
+    
   }
+
+
+
 
   @override
   Widget build(BuildContext context) {
+   
     return Scaffold(
       body: NestedScrollView(
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
@@ -181,7 +188,8 @@ class BankingHome1State extends State<BankingHome1> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Container(
-                                padding: const EdgeInsets.only(top: 8, bottom: 8),
+                                padding:
+                                    const EdgeInsets.only(top: 8, bottom: 8),
                                 decoration: boxDecorationWithRoundedCorners(
                                     backgroundColor: Banking_Primary,
                                     borderRadius: BorderRadius.circular(8)),
@@ -201,15 +209,20 @@ class BankingHome1State extends State<BankingHome1> {
                               ).expand(),
                               10.width,
                               Container(
-                                padding: const EdgeInsets.only(top: 8, bottom: 8),
+                                padding:
+                                    const EdgeInsets.only(top: 8, bottom: 8),
                                 decoration: boxDecorationWithRoundedCorners(
                                     backgroundColor: Banking_Primary,
                                     borderRadius: BorderRadius.circular(8)),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    SvgPicture.asset(Banking_ic_Transfer,
-                                          colorFilter: const ColorFilter.mode(Banking_TextColorWhite, BlendMode.srcIn),),
+                                    SvgPicture.asset(
+                                      Banking_ic_Transfer,
+                                      colorFilter: const ColorFilter.mode(
+                                          Banking_TextColorWhite,
+                                          BlendMode.srcIn),
+                                    ),
                                     10.width,
                                     Text('Transfer',
                                         style: primaryTextStyle(
@@ -237,52 +250,22 @@ class BankingHome1State extends State<BankingHome1> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 //Customoizable widget
-                IconButton(
-              onPressed: () {
-                // Navigator.push(context, MaterialPageRoute(builder: (context) => const MapScreen()));
-
-                showDialog(
-                context: context,
-                builder: (context) {
-                  return AlertDialog(
-                    title: const Text('Take Survey'),
-                    content: const SurveyWidget(),
-                    actions: <Widget>[
-                      TextButton(
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                        child: const Text('Skip'),
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                        child: const Text('Submit', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.green),),
-                      ),
-                      
+              
+                customTitleWithSeeAll(context, "Quick Access", () {}, true),
+                Container(
+                  color: Colors.orange.withOpacity(0.1),
+                  child: Wrap(
+                    spacing: 10,
+                    alignment: WrapAlignment.center,
+                    children: [
+                      for (var target in dragTargets)
+                        Padding(
+                          padding: const EdgeInsets.all(8),
+                          child: target,
+                        )
                     ],
-                  );
-                },
-              );
-              },
-              icon: const Icon(Icons.person),
-            ),
-                 customTitleWithSeeAll(context, "Quick Access", () {}, true),
-              Container(
-                color: Colors.orange.withOpacity(0.1),
-                child: Wrap(
-                  spacing: 10,
-                  alignment: WrapAlignment.center,
-                  children: [
-                    for (var target in dragTargets)
-                      Padding(
-                        padding: const EdgeInsets.all(8),
-                        child: target,
-                      )
-                  ],
+                  ),
                 ),
-              ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

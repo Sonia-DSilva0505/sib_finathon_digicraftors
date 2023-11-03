@@ -4,7 +4,7 @@ class User {
   final String name;
   final String email;
   final String id;
-  final String collegeName;
+  
   final String dateOfBirth;
   double userScore;
 
@@ -12,7 +12,6 @@ class User {
     required this.name,
     required this.email,
     required this.id,
-    required this.collegeName,
     required this.dateOfBirth,
     required this.userScore,
   });
@@ -22,7 +21,6 @@ class User {
         'email': email,
         'id': id,
         "dateOfBirth": dateOfBirth,
-        'collegeName': collegeName,
         'userScore': userScore,
       };
 
@@ -33,7 +31,6 @@ class User {
         email: data['email'],
         id: data['id'],
         dateOfBirth: data['dateOfBirth'],
-        userScore: data['userScore'],
-        collegeName: data['collegeName']);
+        userScore: data['userScore'],);
   }
 }

@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 
-const Banking_Primary = Color(0xFF008000);
+const Banking_Primary = Color.fromARGB(255, 144, 1, 5);
 const Banking_Secondary = Color(0xFF4a536b);
 const Banking_ColorPrimaryDark = Color(0x000fffff);
 
