@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "983025779544",
+    "project_id": "digicrafters-9d396",
+    "storage_bucket": "digicrafters-9d396.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:983025779544:android:0ff817a4949d915d4f1b2d",
+        "android_client_info": {
+          "package_name": "com.example.finathon_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCI8dePlxeNkDrEhACvKj56mpTj4jtRGhM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
