@@ -75,10 +75,16 @@ class BankingHome1State extends State<BankingHome1> {
     pageLength = 3;
     mList1 = bankingHomeList1();
     mList2 = bankingHomeList2();
+
+    
   }
+
+
+
 
   @override
   Widget build(BuildContext context) {
+   
     return Scaffold(
       body: NestedScrollView(
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {

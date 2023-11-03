@@ -13,7 +13,7 @@ class _SurveyWidgetState extends State<SurveyWidget> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 500,
+      height: 280,
       width: 400,
       child:  Column(
           children: [
