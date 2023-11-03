@@ -27,14 +27,11 @@ class BankingHome1State extends State<BankingHome1> {
   int? pageLength;
   bool isEditing = false;
 
-  
-
   @override
   void initState() {
     super.initState();
     currentIndexPage = 0;
     pageLength = 3;
- 
   }
 
   @override
@@ -293,36 +290,33 @@ class BankingHome1State extends State<BankingHome1> {
                         IconButton(
                             onPressed: () {
                               setState(() {
-                                isEditing =
-                                    !isEditing; 
+                                isEditing = !isEditing;
                               });
                               showBottomSheet(
                                 context: context,
                                 builder: (context) {
-                                  return Container(
-                                    color: Colors.orange.withOpacity(0.1),
-                                    child: const Wrap(
-                                      children: [
-                                        Draggable<IconText>(
-                                          data: IconText(
-                                              icon: Icon(Icons.balance),
-                                              text: "balance"),
-                                          feedback: Icon(Icons.balance),
-                                          child: IconText(
-                                              icon: Icon(Icons.balance),
-                                              text: "balance"),
-                                        ),
-                                        Draggable<IconText>(
-                                          data: IconText(
-                                              icon: Icon(Icons.file_download),
-                                              text: "fd"),
-                                          feedback: Icon(Icons.file_download),
-                                          child: IconText(
-                                              icon: Icon(Icons.file_download),
-                                              text: "fd"),
-                                        ),
-                                      ],
-                                    ),
+                                  return  ListView(
+                                    scrollDirection: Axis.horizontal,
+                                    children: const [
+                                      Draggable<IconText>(
+                                        data: IconText(
+                                            icon: Icon(Icons.balance),
+                                            text: "balance"),
+                                        feedback: Icon(Icons.balance),
+                                        child: IconText(
+                                            icon: Icon(Icons.balance),
+                                            text: "balance"),
+                                      ),
+                                      Draggable<IconText>(
+                                        data: IconText(
+                                            icon: Icon(Icons.file_download),
+                                            text: "fd"),
+                                        feedback: Icon(Icons.file_download),
+                                        child: IconText(
+                                            icon: Icon(Icons.file_download),
+                                            text: "fd"),
+                                      ),
+                                    ],
                                   );
                                 },
                               );
@@ -347,7 +341,6 @@ class BankingHome1State extends State<BankingHome1> {
                       )
                   ],
                 ),
-                
               ],
             ),
           ),
