@@ -1,4 +1,5 @@
 import 'package:finathon_app/screen/Track/track.dart';
+import 'package:finathon_app/screen/banking_menu.dart';
 import 'package:finathon_app/screen/question_popup.dart';
 import 'package:flutter/material.dart';
 import '../utils/banking_bottom_navigation_bar.dart';
@@ -8,7 +9,6 @@ import '../utils/banking_strings.dart';
 
 import 'banking_home1.dart';
 import 'banking_payment.dart';
-import 'banking_saving.dart';
 import 'banking_transfer.dart';
 
 class BankingDashboard extends StatefulWidget {
@@ -26,8 +26,8 @@ class _BankingDashboardState extends State<BankingDashboard> {
     const BankingHome1(),
     const BankingTransfer(),
     const BankingPayment(),
-    const BankingSaving(),
     const Tracking(),
+    const BankingMenu(),
   ];
 
   @override
@@ -83,15 +83,15 @@ class _BankingDashboardState extends State<BankingDashboard> {
           unselectedItemColor: Banking_greyColor.withOpacity(0.5),
           items: const <BankingBottomNavigationBarItem>[
             BankingBottomNavigationBarItem(
-                icon: Banking_ic_Home, title: Text(Banking_lbl_Home)),
+                icon: Banking_ic_Home, title: Text("Home")),
             BankingBottomNavigationBarItem(
-                icon: Banking_ic_Transfer, title: Text(Banking_lbl_Transfer)),
+                icon: Banking_ic_Transfer, title: Text("Transactions")),
             BankingBottomNavigationBarItem(
-                icon: Banking_ic_Payment, title: Text(Banking_lbl_Payment)),
+                icon: Banking_ic_Payment, title: Text("Services")),
             BankingBottomNavigationBarItem(
-                icon: Banking_ic_Saving, title: Text(Banking_lbl_Saving)),
+                icon: Banking_ic_Saving, title: Text("Savings")),
             BankingBottomNavigationBarItem(
-                icon: Banking_ic_Menu, title: Text(Banking_lbl_Menu)),
+                icon: Banking_ic_Menu, title: Text("Profile")),
           ],
           currentIndex: selectedIndex,
           unselectedIconTheme: IconThemeData(
