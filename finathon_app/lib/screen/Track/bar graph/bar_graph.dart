@@ -1,8 +1,8 @@
-import 'package:finathon_app/Track/bar%20graph/bar_data.dart';
+import 'package:finathon_app/screen/Track/bar%20graph/bar_data.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
-import '../../utils/app_colors.dart';
+import '../../../utils/app_colors.dart';
 
 class MyBarGraph extends StatelessWidget {
   final List weeklySummary;

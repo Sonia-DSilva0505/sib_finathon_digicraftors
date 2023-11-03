@@ -1,4 +1,4 @@
-import 'package:finathon_app/Track/line%20chart/line_chart_sample2.dart';
+import 'package:finathon_app/screen/Track/line%20chart/line_chart_sample2.dart';
 import 'package:flutter/material.dart';
 
 class TabDaily extends StatelessWidget {

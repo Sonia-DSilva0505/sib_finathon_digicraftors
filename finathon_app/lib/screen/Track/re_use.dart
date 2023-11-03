@@ -1,9 +1,9 @@
-import 'package:finathon_app/Track/Tabs/tab_daily.dart';
-import 'package:finathon_app/Track/Tabs/tab_weekly.dart';
-import 'package:finathon_app/Track/Tabs/my_tab.dart';
+import 'package:finathon_app/screen/Track/Tabs/tab_daily.dart';
+import 'package:finathon_app/screen/Track/Tabs/tab_weekly.dart';
+import 'package:finathon_app/screen/Track/Tabs/my_tab.dart';
 import 'package:flutter/material.dart';
 
-import '../utils/app_colors.dart';
+import '../../utils/app_colors.dart';
 
 GestureDetector singInUp(BuildContext context, bool isLogin, Function clickMe) {
   return GestureDetector(

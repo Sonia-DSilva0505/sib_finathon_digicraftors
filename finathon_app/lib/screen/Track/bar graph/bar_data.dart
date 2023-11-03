@@ -1,5 +1,5 @@
 
-import 'package:finathon_app/Track/bar%20graph/individual_bar.dart';
+import 'package:finathon_app/screen/Track/bar%20graph/individual_bar.dart';
 
 class BarData {
   final double sunAmount;

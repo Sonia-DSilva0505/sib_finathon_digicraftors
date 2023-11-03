@@ -1,12 +1,12 @@
-import 'package:finathon_app/Track/Tabs/my_tab.dart';
-import 'package:finathon_app/Track/re_use.dart';
+import 'package:finathon_app/screen/Track/Tabs/my_tab.dart';
+import 'package:finathon_app/screen/Track/re_use.dart';
 import 'package:finathon_app/model/expense.dart';
 import 'package:flutter/material.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../MapScreen/map_screen.dart';
-import '../utils/app_colors.dart';
+import '../../utils/app_colors.dart';
 
 class Tracking extends StatefulWidget {
   const Tracking({super.key});
