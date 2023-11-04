@@ -293,9 +293,12 @@ class BankingHome1State extends State<BankingHome1> {
                                 isEditing = !isEditing;
                               });
                               showBottomSheet(
+                                enableDrag: true,
                                 context: context,
                                 builder: (context) {
                                   return  ListView(
+                                    shrinkWrap: true,
+                                    physics: const NeverScrollableScrollPhysics(),
                                     scrollDirection: Axis.horizontal,
                                     children: const [
                                       Draggable<IconText>(
