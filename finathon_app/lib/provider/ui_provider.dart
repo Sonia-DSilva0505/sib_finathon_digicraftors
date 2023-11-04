@@ -8,11 +8,6 @@ class UIProvider extends ChangeNotifier {
     'transaction_neft',
     'gold_loan_renew'
   ];
-
-  // For every feature, we have a component in the UI
-  // This map will help us map the feature to the component
-  //feature map for ['fd_open', 'kyc_update', 'FOR_add_beneficiary', 'FOR_send_money', 'priority_banking_request', 'mail_id_update', 'transaction_imps', 'transaction_neft', 'fast_tag', 'transaction_own_acc', 'billpay_recharge', 'fsld_open', 'rd_opening', 'gold_loan_renew', 'apply_apy', 'app_login']
-
   final featureComponentMap = {
     'transaction_own_acc': const IconText(
         iconPath: "images/icons/transaction_own_acc.png",
@@ -28,10 +23,8 @@ class UIProvider extends ChangeNotifier {
         text: "Gold Loan Renewal"),
     'fd_open': const IconText(
         iconPath: "images/icons/fd_open.png", text: "Open Fixed Deposit"),
-    'kyc_update':
-        const IconText(iconPath: "images/icons/kyc_update.png", text: "Update KYC"),
-    'FOR_add_beneficiary': const IconText(
-        iconPath: "images/icons/add_beneficiary.png", text: "Add Beneficiary"),
+    'kyc_update': const IconText(
+        iconPath: "images/icons/kyc_update.png", text: "Update KYC"),
     'FOR_send_money': const IconText(
         iconPath: "images/icons/transaction_own_acc.png", text: "Send Money"),
     'priority_banking_request': const IconText(
@@ -47,27 +40,18 @@ class UIProvider extends ChangeNotifier {
         iconPath: "images/icons/kyc_update.png", text: "Apply APY Scheme"),
   };
 
-
-  List<Draggable> dragables =  [
-                                          Draggable<IconText>(
-                                            data: const IconText(
-                                                iconPath: "images/icons/fd.png",
-                                                text: "balance"),
-                                            feedback: Image.asset("images/icons/fd.png"),
-                                            child: const IconText(
-                                                iconPath: "images/icons/fd.png",
-                                                text: "balance"),
-                                          ),
-                                           Draggable<IconText>(
-                                            data: const IconText(
-                                                iconPath: "images/icons/fd.png",
-                                                text: "balance"),
-                                           feedback: Image.asset("images/icons/fd.png"),
-                                            child: const IconText(
-                                                iconPath: "images/icons/fd.png",
-                                                text: "balance"),
-                                          ),
-                                        ];
+  List<Draggable> dragables = [
+    Draggable<IconText>(
+      data: const IconText(iconPath: "images/icons/fd.png", text: "balance"),
+      feedback: Image.asset("images/icons/fd.png"),
+      child: const IconText(iconPath: "images/icons/fd.png", text: "balance"),
+    ),
+    Draggable<IconText>(
+      data: const IconText(iconPath: "images/icons/fd.png", text: "balance"),
+      feedback: Image.asset("images/icons/fd.png"),
+      child: const IconText(iconPath: "images/icons/fd.png", text: "balance"),
+    ),
+  ];
 
   // This list will contain the components of the most used features
   final iconList = [];
