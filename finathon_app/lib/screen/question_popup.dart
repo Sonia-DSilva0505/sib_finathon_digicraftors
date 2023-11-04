@@ -1,3 +1,4 @@
+import 'package:finathon_app/utils/notofication_service.dart';
 import 'package:flutter/material.dart';
 
 class SurveyWidget extends StatefulWidget {
@@ -45,10 +46,11 @@ class _SurveyWidgetState extends State<SurveyWidget> {
                 children: [
                   const Text(
                     'Take Survey',
-                    style: TextStyle(fontSize: 15),
+                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                   ),
+                  const SizedBox(height: 4,),
                   const Text(
-                    "Question: Are you interested in Mutual Funds?",
+                    " Are you interested in Mutual Funds?",
                     style: TextStyle(fontSize: 12),
                   ),
                   const SizedBox(height: 10),
@@ -70,10 +72,17 @@ class _SurveyWidgetState extends State<SurveyWidget> {
                         width: 10,
                       ),
                       TextButton(
-                        onPressed: () {
+                        onPressed: () async  {
                           setState(() {
                             isVisible = false;
                           });
+                          //send notification
+                          await Future.delayed(const Duration(milliseconds: 10000));
+                           LocalNotifications.showSimpleNotification(
+                          body: "Service",
+                          payload: "Start with SIP of 500/- ",
+                          title: "Mutual Funds");
+
                         },
                         child: const Text(
                           'Submit',

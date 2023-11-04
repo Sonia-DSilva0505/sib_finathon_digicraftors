@@ -1,11 +1,14 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:finathon_app/provider/ui_provider.dart';
+import 'package:finathon_app/screen/Track/re_use.dart';
 import 'package:finathon_app/screen/question_popup.dart';
+import 'package:finathon_app/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:provider/provider.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../utils/banking_colors.dart';
 import '../utils/banking_contants.dart';
 import '../utils/banking_images.dart';
@@ -27,6 +30,8 @@ class BankingHome1State extends State<BankingHome1> {
   int currentIndexPage = 0;
   int? pageLength;
   bool isEditing = false;
+  final _pageController = PageController();
+
 
   @override
   void initState() {
@@ -318,7 +323,47 @@ class BankingHome1State extends State<BankingHome1> {
                         )
                     ],
                   ),
-                  const SurveyWidget()
+                  const SurveyWidget(),
+                  SizedBox(height: 20,),
+                    const Text(
+                  'Invest Now!',
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
+                ),
+                const SizedBox(height: 16),
+                SizedBox(
+                  height: 150,
+                  child: PageView(
+                    controller: _pageController,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: investNowPage(context, 1, 'Stock', 'images/banking/banner.jpg'),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: investNowPage(context, 2, 'FD', 'images/banking/banner.jpg'),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: investNowPage(context, 3, 'Equity', 'images/banking/banner.jpg'),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 16),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SmoothPageIndicator(
+                      controller: _pageController,
+                      count: 3,
+                      effect: ExpandingDotsEffect(
+                        activeDotColor: R.lightPrimaryColor,
+                        dotColor: R.lightPrimaryColor,
+                      ),
+                    ),
+                  ],
+                ),
                 ],
               ),
             ),

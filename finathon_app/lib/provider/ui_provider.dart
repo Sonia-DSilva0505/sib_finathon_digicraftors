@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class UIProvider extends ChangeNotifier {
   final mostUsedFeature = [
-    'transaction_imps',
+    'FOR_send_money',
     'transaction_own_acc',
     'transaction_neft',
     'gold_loan_renew'
@@ -46,6 +46,28 @@ class UIProvider extends ChangeNotifier {
     'apply_apy': const IconText(
         iconPath: "images/icons/kyc_update.png", text: "Apply APY Scheme"),
   };
+
+
+  List<Draggable> dragables =  [
+                                          Draggable<IconText>(
+                                            data: const IconText(
+                                                iconPath: "images/icons/fd.png",
+                                                text: "balance"),
+                                            feedback: Image.asset("images/icons/fd.png"),
+                                            child: const IconText(
+                                                iconPath: "images/icons/fd.png",
+                                                text: "balance"),
+                                          ),
+                                           Draggable<IconText>(
+                                            data: const IconText(
+                                                iconPath: "images/icons/fd.png",
+                                                text: "balance"),
+                                           feedback: Image.asset("images/icons/fd.png"),
+                                            child: const IconText(
+                                                iconPath: "images/icons/fd.png",
+                                                text: "balance"),
+                                          ),
+                                        ];
 
   // This list will contain the components of the most used features
   final iconList = [];

@@ -55,7 +55,7 @@ dependencies:
   flutter_local_notifications:
   rxdart:
   flutter_background:
-  webview_flutter:
+  webview_flutter: ^2.0.13
   intl: ^0.18.1
   pie_chart:
 
