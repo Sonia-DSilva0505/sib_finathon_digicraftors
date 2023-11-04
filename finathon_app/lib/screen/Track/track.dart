@@ -1,10 +1,7 @@
 
 
-import 'package:finathon_app/model/transtions.dart';
 import 'package:finathon_app/provider/goal_provider.dart';
-import 'package:finathon_app/provider/transtion_provider.dart';
 import 'package:finathon_app/screen/All%20Expenses/transaction_list_widget.dart';
-import 'package:finathon_app/screen/SMS/sms.dart';
 import 'package:finathon_app/screen/Track/Tabs/my_tab.dart';
 import 'package:finathon_app/screen/Track/re_use.dart';
 import 'package:finathon_app/model/expense.dart';
@@ -13,7 +10,6 @@ import 'package:flutter/material.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
-import 'package:readsms/readsms.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../MapScreen/map_screen.dart';
@@ -42,7 +38,6 @@ class _TrackingState extends State<Tracking>
   ];
 
   TabController? tabController;
-  final _plugin = Readsms();
   String sms = 'no sms received';
   String sender = 'no sms received';
   String time = 'no sms received';
@@ -51,7 +46,6 @@ class _TrackingState extends State<Tracking>
   void initState() {
     tabController = TabController(length: 2, vsync: this);
     super.initState();
-     print("hello");
    
     
 
@@ -133,7 +127,7 @@ class _TrackingState extends State<Tracking>
                 // goal section
                 goalProvider.is_goal_assigned
                     ? const Text(
-                        'November Goal',
+                        ' Goal',
                         style: TextStyle(
                             fontSize: 24, fontWeight: FontWeight.w500),
                       )

@@ -20,7 +20,6 @@ class _TranstionListState extends State<TranstionList> {
   String time = 'no sms received';
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     getPermission().then((value) {
       if (value) {
