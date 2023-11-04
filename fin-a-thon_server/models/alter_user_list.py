@@ -11,16 +11,21 @@ def main(cust_id, response, feature):
   if response == 0:
     most_used_features_dict[cust_id].remove(feature)
     most_used_features_dict[cust_id].append(feature)
-    print(most_used_features_dict[cust_id])
+
   elif response == 1:
     #use lru to move one step forward from initial position
     most_used_features_dict[cust_id].remove(feature)
     most_used_features_dict[cust_id].insert(1, feature)
-    print(most_used_features_dict[cust_id])
+
   else:
     #put at top
     most_used_features_dict[cust_id].remove(feature)
-    most_used_features_dict[cust_id].insert(0, feature)   
+    most_used_features_dict[cust_id].insert(0, feature)  
+
+  # Write updated dict back to JSON file  
+  with open('user_features.json', 'w') as f:
+    json.dump(most_used_features_dict, f, indent=4)
+  
 
 if __name__ == '__main__':
   main(cust_id, response, feature)
