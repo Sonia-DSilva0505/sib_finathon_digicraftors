@@ -1,4 +1,4 @@
-# sib_finathon_digicraftors
+# sib_finathon_digicrafters_SIB_Digitus
 
 # SIB Dream - Expense Tracking and Analysis Feature
 
