@@ -48,14 +48,13 @@ class _SurveyWidgetState extends State<SurveyWidget> {
                     style: TextStyle(fontSize: 15),
                   ),
                   const Text(
-                    "Question: Which option best describes your preference?",
+                    "Question: Are you interested in Mutual Funds?",
                     style: TextStyle(fontSize: 12),
                   ),
                   const SizedBox(height: 10),
-                  buildOption('Option A', 1),
-                  buildOption('Option B', 2),
-                  buildOption('Option C', 3),
-                  buildOption('Option D', 4),
+                  buildOption('Yes, Absolutely!', 1),
+                  buildOption('I am not sure.', 2),
+                  buildOption('I am not interested.', 3),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
