@@ -39,7 +39,7 @@ class BankingHome1State extends State<BankingHome1> {
   @override
   Widget build(BuildContext context) {
     //provider
-    final ui_provider = Provider.of<UIProvider>(context, listen: true);
+    final uiProvider = Provider.of<UIProvider>(context, listen: true);
     List<DragTarget<IconText>> dragTargets = List.generate(8, (index) {
       return DragTarget<IconText>(
         onAccept: (data) {
@@ -301,7 +301,7 @@ class BankingHome1State extends State<BankingHome1> {
                                 enableDrag: true,
                                 context: context,
                                 builder: (context) {
-                                  return Container(
+                                  return SizedBox(
                                     height: 200,
                                     width: MediaQuery.of(context).size.width,
                                     child: ListView(
@@ -344,7 +344,7 @@ class BankingHome1State extends State<BankingHome1> {
                   spacing: 8,
                   alignment: WrapAlignment.center,
                   children: [
-                    for (var target in isEditing ? dragTargets: ui_provider.iconList)
+                    for (var target in isEditing ? dragTargets: uiProvider.iconList)
                       Padding(
                         padding: const EdgeInsets.all(8),
                         child: target,

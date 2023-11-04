@@ -1,7 +1,7 @@
 
 
 
-import 'package:finathon_app/model/Transtions.dart';
+import 'package:finathon_app/model/transtions.dart';
 import 'package:flutter/material.dart';
 
 

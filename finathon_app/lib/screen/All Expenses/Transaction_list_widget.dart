@@ -14,13 +14,13 @@ class _TranstionListState extends State<TranstionList> {
   @override
   Widget build(BuildContext context) {
   final transtionProvider = Provider.of<TransactionProvider>(context, listen: true);
-    return Container(
+    return SizedBox(
       height: 400,
       child: ListView.builder(
         itemCount: transtionProvider.transtions.length,
         itemBuilder: (context, index) {
         return ListTile(
-          title: Text("${transtionProvider.transtions[index].category}"),
+          title: Text(transtionProvider.transtions[index].category),
         );
       },),
     );

@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 
 class UIProvider extends ChangeNotifier {
   List<IconText> iconList = [
-    IconText(iconPath: "images/icons/fd.png", text: "balance"),
-    IconText(iconPath: "images/icons/fd.png", text: "balance"),
-    IconText(iconPath: "images/icons/fd.png", text: "balance"),
-    IconText(iconPath: "images/icons/fd.png", text: "balance"),
-    IconText(iconPath: "images/icons/fd.png", text: "balance"),
-    IconText(iconPath: "images/icons/fd.png", text: "balance"),
-    IconText(iconPath: "images/icons/fd.png", text: "balance"),
-    IconText(iconPath: "images/icons/fd.png", text: "balance"),
+    const IconText(iconPath: "images/icons/fd.png", text: "balance"),
+    const IconText(iconPath: "images/icons/fd.png", text: "balance"),
+    const IconText(iconPath: "images/icons/fd.png", text: "balance"),
+    const IconText(iconPath: "images/icons/fd.png", text: "balance"),
+    const IconText(iconPath: "images/icons/fd.png", text: "balance"),
+    const IconText(iconPath: "images/icons/fd.png", text: "balance"),
+    const IconText(iconPath: "images/icons/fd.png", text: "balance"),
+    const IconText(iconPath: "images/icons/fd.png", text: "balance"),
   ];
 }
 
