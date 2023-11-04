@@ -1,7 +1,12 @@
 # sib_finathon_digicrafters_SIB_Digitus
 
 # SIB Dream - Expense Tracking and Analysis Feature
-
+![WhatsApp Image 2023-11-04 at 18 34 36_9c979f5b](https://github.com/Sonia-DSilva0505/sib_finathon_digicraftors/assets/102247203/e3d873fd-95ea-4e1a-b746-ebfbb20bf730)
+![WhatsApp Image 2023-11-04 at 18 34 37_feb5ec6b](https://github.com/Sonia-DSilva0505/sib_finathon_digicraftors/assets/102247203/9e62fff1-aaf8-4ab4-a0bf-bb259f508662)
+![WhatsApp Image 2023-11-04 at 18 34 37_0db59c62](https://github.com/Sonia-DSilva0505/sib_finathon_digicraftors/assets/102247203/dd581f1c-fdd7-41f6-9b43-85c3d5d7b2a2)
+![image](https://github.com/Sonia-DSilva0505/sib_finathon_digicraftors/assets/102247203/ffb8bb77-5963-44a1-a946-c6e8ac291fb6)
+![image](https://github.com/Sonia-DSilva0505/sib_finathon_digicraftors/assets/102247203/ade1ac10-c17b-4f44-bb70-40624f8eb9c9)
+![WhatsApp Image 2023-11-04 at 18 44 22_1458fc41](https://github.com/Sonia-DSilva0505/sib_finathon_digicraftors/assets/102247203/8b8779d0-f7d5-45e8-a2b9-8f19cc41e22d)
 Welcome to the SIB Dream Expense Tracking and Analysis feature, where we provide users with a comprehensive financial toolset to manage and optimize their expenses. This readme provides an overview of the rich functionality our app offers to help users take control of their finances.
 
 ## Key Features:
@@ -56,11 +61,6 @@ For any questions, feedback, or assistance, our support team is here to help. Fe
 
 We are excited to empower you with the SIB Dream Expense Tracking and Analysis feature. Take control of your finances, achieve your goals, and have a more secure financial future. Thank you for choosing SIB Dream!
 
-![WhatsApp Image 2023-11-04 at 18 34 36_9c979f5b](https://github.com/Sonia-DSilva0505/sib_finathon_digicraftors/assets/102247203/e3d873fd-95ea-4e1a-b746-ebfbb20bf730)
-![WhatsApp Image 2023-11-04 at 18 34 37_feb5ec6b](https://github.com/Sonia-DSilva0505/sib_finathon_digicraftors/assets/102247203/9e62fff1-aaf8-4ab4-a0bf-bb259f508662)
-![WhatsApp Image 2023-11-04 at 18 34 37_0db59c62](https://github.com/Sonia-DSilva0505/sib_finathon_digicraftors/assets/102247203/dd581f1c-fdd7-41f6-9b43-85c3d5d7b2a2)
-![image](https://github.com/Sonia-DSilva0505/sib_finathon_digicraftors/assets/102247203/ffb8bb77-5963-44a1-a946-c6e8ac291fb6)
-![image](https://github.com/Sonia-DSilva0505/sib_finathon_digicraftors/assets/102247203/ade1ac10-c17b-4f44-bb70-40624f8eb9c9)
-![WhatsApp Image 2023-11-04 at 18 44 22_1458fc41](https://github.com/Sonia-DSilva0505/sib_finathon_digicraftors/assets/102247203/8b8779d0-f7d5-45e8-a2b9-8f19cc41e22d)
+
 
 
