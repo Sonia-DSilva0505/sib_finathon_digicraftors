@@ -23,12 +23,13 @@ class _TrackingState extends State<Tracking>
   // my tabs
   List<MyTab> myTabs = const [
     // daily tab
-    MyTab(
-      text: 'Daily',
-    ),
+
     // weekly tab
     MyTab(
       text: 'Weekly',
+    ),
+    MyTab(
+      text: 'Monthly',
     ),
   ];
 
@@ -69,11 +70,13 @@ class _TrackingState extends State<Tracking>
   ];
 
   List<String> goalList = [
-    'Eg. Buy a new phone',
-    'Eg. Save for college',
-    'Eg. Save for gift'
+    'Buy a new phone',
+    'Save for college',
   ];
-  List<String> goalListAmt = ['20000', '1500', '500'];
+  List<String> goalListAmt = [
+    '20000',
+    '1500',
+  ];
 
   final TextEditingController _category = TextEditingController();
   final TextEditingController _amount = TextEditingController();
@@ -109,146 +112,215 @@ class _TrackingState extends State<Tracking>
                               fontSize: 24, fontWeight: FontWeight.w500),
                         ),
                   const SizedBox(height: 16),
-                  //add goals widget or show goal
                   goalProvider.is_goal_assigned
                       ? const ShowGoalWidget()
-                      : Expanded(
-                          child: ListView.builder(
-                              scrollDirection: Axis.horizontal,
-                              itemCount: goalList.length + 1,
-                              itemBuilder: (context, index) {
-                                if (index == 0) {
+                      : Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            GestureDetector(
+                              onTap: () {
+                                showModalBottomSheet(
+                                    isScrollControlled: true,
+                                    context: context,
+                                    builder: (context) {
+                                      return Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 24, vertical: 24),
+                                        child: DecoratedBox(
+                                          decoration: BoxDecoration(
+                                            color: Colors.white54,
+                                            borderRadius:
+                                                BorderRadius.circular(16),
+                                          ),
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              inputText(
+                                                  'Goal',
+                                                  'eg: Buy a gift',
+                                                  _category,
+                                                  false),
+                                              inputText('Amount', 'eg: 2000',
+                                                  _amount, false),
+                                              ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                    padding:
+                                                        const EdgeInsets.all(
+                                                            18),
+                                                    backgroundColor:
+                                                        R.primaryColor),
+                                                onPressed: () {
+                                                  //set amount and desc
+                                                  goalProvider.goal_amount =
+                                                      _amount.text;
+                                                  goalProvider.goal_desc =
+                                                      _category.text;
+                                                  goalProvider
+                                                      .is_goal_assigned = true;
+                                                  setState(() {});
+                                                  Navigator.pop(context);
+                                                },
+                                                child: const Text(
+                                                  "Add Monthly Goal",
+                                                  style: TextStyle(
+                                                      color: Colors.white),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      );
+                                    });
+                              },
+                              child: DottedBorder(
+                                borderType: BorderType.RRect,
+                                dashPattern: const [3, 3],
+                                color: R.primaryColor,
+                                strokeWidth: 4,
+                                radius: const Radius.circular(16),
+                                child: const Center(
+                                  child: Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 16.0, vertical: 27.0),
+                                    child: Icon(
+                                      Icons.add_circle_outline_outlined,
+                                      size: 36,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              width: MediaQuery.sizeOf(context).width * 0.7,
+                              height: 100,
+                              child: ListView.builder(
+                                itemCount: goalList.length,
+                                scrollDirection: Axis.horizontal,
+                                itemBuilder: (context, index) {
                                   return GestureDetector(
                                     onTap: () {
+                                      setState(() {
+                                        
+                                        _amount.text =goalListAmt[index];
+                                                        _category.text = goalList[index];
+
+                                      });
                                       showModalBottomSheet(
+                                          isScrollControlled: true,
                                           context: context,
                                           builder: (context) {
-                                            return Container(
-                                              height: 400,
+                                            return Padding(
                                               padding:
                                                   const EdgeInsets.symmetric(
                                                       horizontal: 24,
                                                       vertical: 24),
-                                              decoration: BoxDecoration(
-                                                color: Colors.white54,
-                                                borderRadius:
-                                                    BorderRadius.circular(16),
-                                              ),
-                                              child: Column(
-                                                children: [
-                                                  inputText(
-                                                      'Goal',
-                                                      'eg: Buy a gift',
-                                                      _category,
-                                                      false),
-                                                  inputText(
-                                                      'Amount',
-                                                      'eg: 2000',
-                                                      _amount,
-                                                      false),
+                                              child: DecoratedBox(
+                                                decoration: BoxDecoration(
+                                                  color: Colors.white54,
+                                                  borderRadius:
+                                                      BorderRadius.circular(16),
+                                                ),
+                                                child: Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.min,
+                                                  children: [
+                                                    inputText(
+                                                        'Goal',
+                                                        goalList[index],
+                                                        _category,
+                                                        false),
+                                                    inputText(
+                                                        'Amount',
+                                                        goalListAmt[index],
+                                                        _amount,
+                                                        false),
+                                                    ElevatedButton(
+                                                      style: ElevatedButton
+                                                          .styleFrom(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .all(18),
+                                                              backgroundColor: R
+                                                                  .primaryColor),
+                                                      onPressed: () {
 
-                                                  ElevatedButton(
-                                                  
-                                                    style: ElevatedButton
-                                                        .styleFrom(
-                                                            padding:
-                                                                const EdgeInsets
-                                                                    .all(18), backgroundColor: R.primaryColor),
-                                                    onPressed: () {
-                                                      //set amount and desc 
-                                                      goalProvider.goal_amount = _amount.text;
-                                                      goalProvider.goal_desc = _category.text;
-                                                      goalProvider.is_goal_assigned = true;
-                                                      setState(() {
-                                                        
-                                                      });
-                                                      Navigator.pop(context);
-                                                    },
-                                                    child: const Text(
-                                                      "Add Monthly Goal",
-                                                      style: TextStyle(
-                                                          color: Colors.white),
+
+                                                        //set amount and desc
+                                                        goalProvider
+                                                                .goal_amount =
+                                                            _amount.text;
+                                                        goalProvider.goal_desc =
+                                                            _category.text;
+                                                        goalProvider
+                                                                .is_goal_assigned =
+                                                            true;
+                                                        setState(() {});
+                                                        Navigator.pop(context);
+                                                      },
+                                                      child: const Text(
+                                                        "Add Monthly Goal",
+                                                        style: TextStyle(
+                                                            color:
+                                                                Colors.white),
+                                                      ),
                                                     ),
-                                                  ),
-                                                  // submit(
-                                                  //     context,
-                                                  //     _category.text.trim(),
-                                                  //     _amount.text
-                                                  //         ),
-                                                ],
+                                                  ],
+                                                ),
                                               ),
                                             );
                                           });
                                     },
-                                    child: SizedBox(
-                                      height: 120,
-                                      child: Row(
-                                        children: [
-                                          DottedBorder(
-                                            borderType: BorderType.RRect,
-                                            dashPattern: const [3, 3],
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(left: 8.0),
+                                      child: DecoratedBox(
+                                        decoration: BoxDecoration(
+                                          border: Border.all(
                                             color: R.primaryColor,
-                                            strokeWidth: 4,
-                                            radius: const Radius.circular(16),
-                                            child: const SizedBox(
-                                              width: 100,
-                                              height: 120,
-                                              child: Center(
-                                                child: Icon(
-                                                  Icons
-                                                      .add_circle_outline_outlined,
-                                                  size: 36,
+                                            width: 3,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(16),
+                                        ),
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 8.0),
+                                          child: SizedBox(
+                                            width: 70,
+                                            height: 80,
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.min,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  goalList[index],
+                                                  style: const TextStyle(
+                                                    fontSize: 14,
+                                                    fontWeight: FontWeight.w400,
+                                                  ),
                                                 ),
-                                              ),
+                                                const SizedBox(height: 2),
+                                                Text(
+                                                  goalListAmt[index],
+                                                  style: const TextStyle(
+                                                    fontSize: 10,
+                                                    fontWeight: FontWeight.w400,
+                                                  ),
+                                                ),
+                                              ],
                                             ),
                                           ),
-                                          const SizedBox(width: 16),
-                                        ],
+                                        ),
                                       ),
                                     ),
                                   );
-                                }
-                                return Container(
-                                  margin: const EdgeInsets.only(right: 16),
-                                  width: 100,
-                                  height: 60,
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                      color: R.primaryColor,
-                                      width: 3,
-                                    ),
-                                    borderRadius: BorderRadius.circular(16),
-                                  ),
-                                  child: SizedBox(
-                                    height: 60,
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        const SizedBox(height: 5),
-                                        Text(
-                                          goalList[index - 1],
-                                          style: const TextStyle(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w400,
-                                          ),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                        const SizedBox(height: 2),
-                                        Text(
-                                          goalListAmt[index - 1],
-                                          style: const TextStyle(
-                                            fontSize: 10,
-                                            fontWeight: FontWeight.w400,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                );
-                              }),
+                                },
+                              ),
+                            ),
+                          ],
                         ),
                   const SizedBox(height: 24),
 

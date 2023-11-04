@@ -5,7 +5,6 @@ import '../utils/banking_data_generator.dart';
 import 'banking_transfer_successful.dart';
 import '../utils/banking_colors.dart';
 import '../utils/banking_contants.dart';
-import '../utils/banking_images.dart';
 import '../utils/banking_slider.dart';
 import '../utils/banking_strings.dart';
 
@@ -30,7 +29,8 @@ class _BankingTransferState extends State<BankingTransfer> {
       const BankingTransferSuccessful().launch(context);
     }
   }
-   @override
+
+  @override
   void initState() {
     super.initState();
     mList1 = bankingHomeList1();
@@ -65,65 +65,60 @@ class _BankingTransferState extends State<BankingTransfer> {
                       fontFamily: fontBold)),
               16.height,
               const BankingSliderWidget().visible(isSwitch == false),
-              Container(
-                margin: const EdgeInsets.only(
-                    left: spacing_standard_new, right: spacing_standard_new),
-                child: Stack(
-                  children: [
-                    Image.asset(Banking_ic_CardImage,
-                        fit: BoxFit.cover, height: 200),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text("Manish Dayma",
-                                    style: boldTextStyle(
-                                        color: Banking_whitePureColor,
-                                        size: 18,
-                                        fontFamily: fontMedium))
-                                .paddingOnly(
-                                    top: spacing_large,
-                                    left: spacing_standard_new),
-                            Text(Banking_lbl_app_Name,
-                                    style: boldTextStyle(
-                                        color: Banking_whitePureColor,
-                                        size: 16,
-                                        fontFamily: fontMedium))
-                                .paddingOnly(
-                                    top: spacing_large,
-                                    right: spacing_standard_new)
-                          ],
-                        ),
-                        Text("The Same Bank",
-                                style: boldTextStyle(
-                                    color: Banking_whitePureColor,
-                                    size: 18,
-                                    fontFamily: fontMedium))
-                            .paddingOnly(
-                                top: spacing_large, left: spacing_standard_new),
-                        Text('1121 *** ** *** 5555',
-                                style: boldTextStyle(
-                                    color: Banking_whitePureColor,
-                                    size: 18,
-                                    fontFamily: fontMedium))
-                            .paddingOnly(
-                                left: spacing_standard_new,
-                                top: spacing_control),
-                        Text("\$" "12,500",
-                                style: boldTextStyle(
-                                    color: Banking_whitePureColor,
-                                    size: 18,
-                                    fontFamily: fontMedium))
-                            .paddingOnly(
-                                top: spacing_standard,
-                                left: spacing_standard_new),
-                      ],
-                    ),
-                    10.height,
-                  ],
-                ),
+              Stack(
+                children: [
+                  Image.asset('Banking_ic_CardImage'),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text("Manish Dayma",
+                                  style: boldTextStyle(
+                                      color: Banking_whitePureColor,
+                                      size: 18,
+                                      fontFamily: fontMedium))
+                              .paddingOnly(
+                                  top: spacing_large,
+                                  left: spacing_standard_new),
+                          Text(Banking_lbl_app_Name,
+                                  style: boldTextStyle(
+                                      color: Banking_whitePureColor,
+                                      size: 16,
+                                      fontFamily: fontMedium))
+                              .paddingOnly(
+                                  top: spacing_large,
+                                  right: spacing_standard_new)
+                        ],
+                      ),
+                      Text("The Same Bank",
+                              style: boldTextStyle(
+                                  color: Banking_whitePureColor,
+                                  size: 18,
+                                  fontFamily: fontMedium))
+                          .paddingOnly(
+                              top: spacing_large, left: spacing_standard_new),
+                      Text('1121 *** ** *** 5555',
+                              style: boldTextStyle(
+                                  color: Banking_whitePureColor,
+                                  size: 18,
+                                  fontFamily: fontMedium))
+                          .paddingOnly(
+                              left: spacing_standard_new,
+                              top: spacing_control),
+                      Text("\$" "12,500",
+                              style: boldTextStyle(
+                                  color: Banking_whitePureColor,
+                                  size: 18,
+                                  fontFamily: fontMedium))
+                          .paddingOnly(
+                              top: spacing_standard,
+                              left: spacing_standard_new),
+                    ],
+                  ),
+                  10.height,
+                ],
               ).visible(isSwitch == true),
               16.height,
               const Divider(),
@@ -349,103 +344,102 @@ class _BankingTransferState extends State<BankingTransfer> {
               //     24.height,
               //   ],
               // ),
-            
-            // Transactions
-            Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text("Recently Transaction",
-                        style: primaryTextStyle(
-                            size: 16,
-                            color: Banking_TextColorPrimary,
-                            fontFamily: fontRegular)),
-                    Text("22 Feb 2020",
-                        style: primaryTextStyle(
-                            size: 16,
-                            color: Banking_TextColorSecondary,
-                            fontFamily: fontRegular)),
-                  ],
-                ),
-                ListView.builder(
-                  scrollDirection: Axis.vertical,
-                  itemCount: mList1.length,
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemBuilder: (BuildContext context, int index) {
-                    return Container(
-                      padding: const EdgeInsets.all(8),
-                      margin: const EdgeInsets.only(top: 8, bottom: 8),
-                      decoration: boxDecorationRoundedWithShadow(8,
-                          backgroundColor: Banking_whitePureColor,
-                          spreadRadius: 0,
-                          blurRadius: 0),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Icon(Icons.account_balance_wallet,
-                              size: 30, color: mList1[index].color),
-                          10.width,
-                          Text('${mList1[index].title}',
-                                  style: primaryTextStyle(
-                                      size: 16,
-                                      color: mList1[index].color,
-                                      fontFamily: fontMedium))
-                              .expand(),
-                          Text(mList1[index].bal!,
-                              style: primaryTextStyle(
-                                  color: mList1[index].color, size: 16)),
-                        ],
-                      ),
-                    );
-                  },
-                ),
-                16.height,
-                Text("22 Feb 2020",
-                    style: primaryTextStyle(
-                        size: 16,
-                        color: Banking_TextColorSecondary,
-                        fontFamily: fontRegular)),
-                const Divider(),
-                ListView.builder(
-                  scrollDirection: Axis.vertical,
-                  itemCount: 15,
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemBuilder: (BuildContext context, int index) {
-                    BankingHomeModel2 data = mList2[index % mList2.length];
-                    return Container(
-                      padding: const EdgeInsets.all(8),
-                      margin: const EdgeInsets.only(top: 8, bottom: 8),
-                      decoration: boxDecorationRoundedWithShadow(8,
-                          backgroundColor: Banking_whitePureColor,
-                          spreadRadius: 0,
-                          blurRadius: 0),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Image.asset(data.icon!,
-                              height: 30,
-                              width: 30,
-                              color: index == 2
-                                  ? Banking_Primary
-                                  : Banking_Primary),
-                          10.width,
-                          Text(data.title!,
-                                  style: primaryTextStyle(
-                                      size: 16,
-                                      color: Banking_TextColorPrimary,
-                                      fontFamily: fontRegular))
-                              .expand(),
-                          Align(
-                              alignment: Alignment.centerRight,
-                              child: Text(data.charge!,
-                                  style: primaryTextStyle(
-                                      color: data.color, size: 16)))
-                        ],
-                      ),
-                    );
-                  },
-                ),
+
+              // Transactions
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("Recently Transaction",
+                      style: primaryTextStyle(
+                          size: 16,
+                          color: Banking_TextColorPrimary,
+                          fontFamily: fontRegular)),
+                  Text("22 Feb 2020",
+                      style: primaryTextStyle(
+                          size: 16,
+                          color: Banking_TextColorSecondary,
+                          fontFamily: fontRegular)),
+                ],
+              ),
+              ListView.builder(
+                scrollDirection: Axis.vertical,
+                itemCount: mList1.length,
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemBuilder: (BuildContext context, int index) {
+                  return Container(
+                    padding: const EdgeInsets.all(8),
+                    margin: const EdgeInsets.only(top: 8, bottom: 8),
+                    decoration: boxDecorationRoundedWithShadow(8,
+                        backgroundColor: Banking_whitePureColor,
+                        spreadRadius: 0,
+                        blurRadius: 0),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Icon(Icons.account_balance_wallet,
+                            size: 30, color: mList1[index].color),
+                        10.width,
+                        Text('${mList1[index].title}',
+                                style: primaryTextStyle(
+                                    size: 16,
+                                    color: mList1[index].color,
+                                    fontFamily: fontMedium))
+                            .expand(),
+                        Text(mList1[index].bal!,
+                            style: primaryTextStyle(
+                                color: mList1[index].color, size: 16)),
+                      ],
+                    ),
+                  );
+                },
+              ),
+              16.height,
+              Text("22 Feb 2020",
+                  style: primaryTextStyle(
+                      size: 16,
+                      color: Banking_TextColorSecondary,
+                      fontFamily: fontRegular)),
+              const Divider(),
+              ListView.builder(
+                scrollDirection: Axis.vertical,
+                itemCount: 15,
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemBuilder: (BuildContext context, int index) {
+                  BankingHomeModel2 data = mList2[index % mList2.length];
+                  return Container(
+                    padding: const EdgeInsets.all(8),
+                    margin: const EdgeInsets.only(top: 8, bottom: 8),
+                    decoration: boxDecorationRoundedWithShadow(8,
+                        backgroundColor: Banking_whitePureColor,
+                        spreadRadius: 0,
+                        blurRadius: 0),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Image.asset(data.icon!,
+                            height: 30,
+                            width: 30,
+                            color:
+                                index == 2 ? Banking_Primary : Banking_Primary),
+                        10.width,
+                        Text(data.title!,
+                                style: primaryTextStyle(
+                                    size: 16,
+                                    color: Banking_TextColorPrimary,
+                                    fontFamily: fontRegular))
+                            .expand(),
+                        Align(
+                            alignment: Alignment.centerRight,
+                            child: Text(data.charge!,
+                                style: primaryTextStyle(
+                                    color: data.color, size: 16)))
+                      ],
+                    ),
+                  );
+                },
+              ),
             ],
           ),
         ),
