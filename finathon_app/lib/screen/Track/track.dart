@@ -1,8 +1,11 @@
+import 'package:finathon_app/provider/goal_provider.dart';
 import 'package:finathon_app/screen/Track/Tabs/my_tab.dart';
 import 'package:finathon_app/screen/Track/re_use.dart';
 import 'package:finathon_app/model/expense.dart';
+import 'package:finathon_app/screen/Track/show_goal_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:dotted_border/dotted_border.dart';
+import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../MapScreen/map_screen.dart';
@@ -66,11 +69,11 @@ class _TrackingState extends State<Tracking>
   ];
 
   List<String> goalList = [
-    'Buy a new phone',
-    'Save for college',
-    'Save for gift'
+    'Eg. Buy a new phone',
+    'Eg. Save for college',
+    'Eg. Save for gift'
   ];
-  List<String> goalListAmt = ['2000', '1500', '500'];
+  List<String> goalListAmt = ['20000', '1500', '500'];
 
   final TextEditingController _category = TextEditingController();
   final TextEditingController _amount = TextEditingController();
@@ -79,123 +82,174 @@ class _TrackingState extends State<Tracking>
 
   @override
   Widget build(BuildContext context) {
+    final goalProvider = Provider.of<GoalProvider>(context, listen: true);
     return SafeArea(
       child: SingleChildScrollView(
         child: SizedBox(
           height: MediaQuery.of(context).size.height + 200,
           child: Scaffold(
-           
             body: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // goal section
-                  const Text(
-                    'Goals',
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
+                  SizedBox(
+                    height: 8,
                   ),
+                  // goal section
+                  goalProvider.is_goal_assigned
+                      ? const Text(
+                          'November Goal',
+                          style: TextStyle(
+                              fontSize: 24, fontWeight: FontWeight.w500),
+                        )
+                      : const Text(
+                          'Add Monthly Goal',
+                          style: TextStyle(
+                              fontSize: 24, fontWeight: FontWeight.w500),
+                        ),
                   const SizedBox(height: 16),
-                  Expanded(
-                    child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: goalList.length + 1,
-                        itemBuilder: (context, index) {
-                          if (index == 0) {
-                            return GestureDetector(
-                              onTap: () {
-                                showModalBottomSheet(
-                                    context: context,
-                                    builder: (context) {
-                                      return Container(
-                                        height: 400,
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 24, vertical: 24),
-                                        decoration: BoxDecoration(
-                                          color: Colors.black,
-                                          borderRadius:
-                                              BorderRadius.circular(16),
-                                        ),
-                                        child: Column(
-                                          children: [
-                                            inputText('Goal', 'eg: Buy a gift',
-                                                _category, false),
-                                            inputText('Amount', 'eg: 2000',
-                                                _amount, false),
-                                            // submit(
-                                            //     context,
-                                            //     _category.text.trim(),
-                                            //     _amount.text
-                                            //         ),
-                                          ],
-                                        ),
-                                      );
-                                    });
-                              },
-                              child: SizedBox(
-                                // height: 120,
-                                child: Row(
-                                  children: [
-                                    DottedBorder(
-                                      borderType: BorderType.RRect,
-                                      dashPattern: const [3, 3],
-                                      color: R.primaryColor,
-                                      strokeWidth: 4,
-                                      radius: const Radius.circular(16),
-                                      child: const SizedBox(
-                                        width: 100,
-                                        // height: 120,
-                                        child: Center(
-                                          child: Icon(
-                                            Icons.add_circle_outline_outlined,
-                                            size: 36,
+                  //add goals widget or show goal
+                  goalProvider.is_goal_assigned
+                      ? ShowGoalWidget()
+                      : Expanded(
+                          child: ListView.builder(
+                              scrollDirection: Axis.horizontal,
+                              itemCount: goalList.length + 1,
+                              itemBuilder: (context, index) {
+                                if (index == 0) {
+                                  return GestureDetector(
+                                    onTap: () {
+                                      showModalBottomSheet(
+                                          context: context,
+                                          builder: (context) {
+                                            return Container(
+                                              height: 400,
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 24,
+                                                      vertical: 24),
+                                              decoration: BoxDecoration(
+                                                color: Colors.white54,
+                                                borderRadius:
+                                                    BorderRadius.circular(16),
+                                              ),
+                                              child: Column(
+                                                children: [
+                                                  inputText(
+                                                      'Goal',
+                                                      'eg: Buy a gift',
+                                                      _category,
+                                                      false),
+                                                  inputText(
+                                                      'Amount',
+                                                      'eg: 2000',
+                                                      _amount,
+                                                      false),
+
+                                                  ElevatedButton(
+                                                  
+                                                    style: ElevatedButton
+                                                        .styleFrom(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .all(18), backgroundColor: R.primaryColor),
+                                                    onPressed: () {
+                                                      //set amount and desc 
+                                                      goalProvider.goal_amount = _amount.text;
+                                                      goalProvider.goal_desc = _category.text;
+                                                      goalProvider.is_goal_assigned = true;
+                                                      setState(() {
+                                                        
+                                                      });
+                                                      Navigator.pop(context);
+                                                    },
+                                                    child: Text(
+                                                      "Add Monthly Goal",
+                                                      style: TextStyle(
+                                                          color: Colors.white),
+                                                    ),
+                                                  ),
+                                                  // submit(
+                                                  //     context,
+                                                  //     _category.text.trim(),
+                                                  //     _amount.text
+                                                  //         ),
+                                                ],
+                                              ),
+                                            );
+                                          });
+                                    },
+                                    child: SizedBox(
+                                      height: 120,
+                                      child: Row(
+                                        children: [
+                                          DottedBorder(
+                                            borderType: BorderType.RRect,
+                                            dashPattern: const [3, 3],
+                                            color: R.primaryColor,
+                                            strokeWidth: 4,
+                                            radius: const Radius.circular(16),
+                                            child: const SizedBox(
+                                              width: 100,
+                                              height: 120,
+                                              child: Center(
+                                                child: Icon(
+                                                  Icons
+                                                      .add_circle_outline_outlined,
+                                                  size: 36,
+                                                ),
+                                              ),
+                                            ),
                                           ),
-                                        ),
+                                          const SizedBox(width: 16),
+                                        ],
                                       ),
                                     ),
-                                    const SizedBox(width: 16),
-                                  ],
-                                ),
-                              ),
-                            );
-                          }
-                          return Container(
-                            margin: const EdgeInsets.only(right: 16),
-                            width: 100,
-                            height: 120,
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                color: R.primaryColor,
-                                width: 3,
-                              ),
-                              borderRadius: BorderRadius.circular(16),
-                            ),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                const SizedBox(height: 5),
-                                Text(
-                                  goalList[index - 1],
-                                  style: const TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w400,
+                                  );
+                                }
+                                return Container(
+                                  margin: const EdgeInsets.only(right: 16),
+                                  width: 100,
+                                  height: 60,
+                                  decoration: BoxDecoration(
+                                    border: Border.all(
+                                      color: R.primaryColor,
+                                      width: 3,
+                                    ),
+                                    borderRadius: BorderRadius.circular(16),
                                   ),
-                                  textAlign: TextAlign.center,
-                                ),
-                                const SizedBox(height: 2),
-                                Text(
-                                  goalListAmt[index - 1],
-                                  style: const TextStyle(
-                                    fontSize: 10,
-                                    fontWeight: FontWeight.w400,
+                                  child: SizedBox(
+                                    height: 60,
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        const SizedBox(height: 5),
+                                        Text(
+                                          goalList[index - 1],
+                                          style: const TextStyle(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                        const SizedBox(height: 2),
+                                        Text(
+                                          goalListAmt[index - 1],
+                                          style: const TextStyle(
+                                            fontSize: 10,
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                ),
-                              ],
-                            ),
-                          );
-                        }),
-                  ),
+                                );
+                              }),
+                        ),
                   const SizedBox(height: 24),
 
                   // daily weekly chart
