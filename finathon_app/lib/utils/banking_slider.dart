@@ -8,7 +8,6 @@ import 'banking_colors.dart';
 import 'banking_contants.dart';
 import 'banking_data_generator.dart';
 import 'banking_images.dart';
-import 'banking_strings.dart';
 
 class BankingSliderWidget extends StatefulWidget {
   static String tag = '/BankingSlider';
@@ -57,22 +56,12 @@ class BankingSliderWidgetState extends State<BankingSliderWidget> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             24.height,
-                            Row(
-                              children: [
-                                Text(mList[currentIndexPage].name.validate(),
-                                        style: primaryTextStyle(
-                                            color: Banking_whitePureColor,
-                                            size: 18,
-                                            fontFamily: fontMedium))
-                                    .expand(),
-                                Text(Banking_lbl_app_Name,
+                            Text(mList[currentIndexPage].name.validate(),
                                     style: primaryTextStyle(
                                         color: Banking_whitePureColor,
-                                        size: 16,
-                                        fontFamily: fontMedium))
-                              ],
-                            ),
-                            24.height,
+                                        size: 18,
+                                        fontFamily: fontMedium)),
+                                        24.height,
                             Text(mList[currentIndexPage].bank.validate(),
                                 style: primaryTextStyle(
                                     color: Banking_whitePureColor,
@@ -85,11 +74,6 @@ class BankingSliderWidgetState extends State<BankingSliderWidget> {
                                     size: 18,
                                     fontFamily: fontMedium)),
                             8.height,
-                            Text("\$${mList[currentIndexPage].rs.validate()}",
-                                style: primaryTextStyle(
-                                    color: Banking_whitePureColor,
-                                    size: 18,
-                                    fontFamily: fontMedium)),
                           ],
                         ),
                       ),

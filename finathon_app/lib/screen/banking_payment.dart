@@ -1,3 +1,4 @@
+import 'package:finathon_app/utils/notofication_service.dart';
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
 import '../model/banking_model.dart';
@@ -47,8 +48,8 @@ class _BankingPaymentState extends State<BankingPayment> {
                   labelStyle: primaryTextStyle(
                       size: textSizeLargeMedium.toInt(),
                       color: Banking_greyColor),
-                  suffixIcon:
-                      const Icon(Icons.search, size: 30, color: Banking_greyColor),
+                  suffixIcon: const Icon(Icons.search,
+                      size: 30, color: Banking_greyColor),
                   enabledBorder: const UnderlineInputBorder(
                       borderSide: BorderSide(color: Colors.black12)),
                   focusedBorder: const UnderlineInputBorder(
@@ -62,30 +63,38 @@ class _BankingPaymentState extends State<BankingPayment> {
                 physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
                 itemBuilder: (context, index) {
-                  return Container(
-                    margin:
-                        const EdgeInsets.only(left: 6, right: 6, top: 6, bottom: 6),
-                    //padding: EdgeInsets.all(6),
-                    decoration: boxDecorationWithShadow(
-                        backgroundColor: Banking_whitePureColor,
-                        boxShadow: defaultBoxShadow(),
-                        borderRadius: BorderRadius.circular(12)),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Image.asset(mList[index].img!,
-                            height: 35, width: 35, color: mList[index].color),
-                        15.height,
-                        Text(mList[index].title!,
-                            style: primaryTextStyle(size: 16),
-                            textAlign: TextAlign.center,
-                            maxLines: 2),
-                      ],
-                    ),
-                  ).onTap(() {
-                    BankingPaymentDetails(headerText: mList[index].title)
-                        .launch(context);
-                  });
+                  return GestureDetector(
+                    onTap: () {
+                      LocalNotifications.showSimpleNotification(
+                          body: "Service",
+                          payload: "Hello welcome to ${mList[index].title!}",
+                          title: mList[index].title!);
+                    },
+                    child: Container(
+                      margin: const EdgeInsets.only(
+                          left: 6, right: 6, top: 6, bottom: 6),
+                      //padding: EdgeInsets.all(6),
+                      decoration: boxDecorationWithShadow(
+                          backgroundColor: Banking_whitePureColor,
+                          boxShadow: defaultBoxShadow(),
+                          borderRadius: BorderRadius.circular(12)),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Image.asset(mList[index].img!,
+                              height: 35, width: 35, color: mList[index].color),
+                          15.height,
+                          Text(mList[index].title!,
+                              style: primaryTextStyle(size: 16),
+                              textAlign: TextAlign.center,
+                              maxLines: 2),
+                        ],
+                      ),
+                    ).onTap(() {
+                      BankingPaymentDetails(headerText: mList[index].title)
+                          .launch(context);
+                    }),
+                  );
                 },
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 3,
