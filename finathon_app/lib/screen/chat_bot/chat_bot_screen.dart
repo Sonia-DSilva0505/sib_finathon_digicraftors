@@ -17,7 +17,7 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
       body: SizedBox(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
-        child: WebView(
+        child: const WebView(
           javascriptMode: JavascriptMode.unrestricted,
           initialUrl: "https://mediafiles.botpress.cloud/ec1e7060-9a5b-4fd6-bcda-e80970dfe7e6/webchat/bot.html",
         ),

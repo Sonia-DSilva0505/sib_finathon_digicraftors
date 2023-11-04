@@ -324,7 +324,7 @@ class BankingHome1State extends State<BankingHome1> {
                     ],
                   ),
                   const SurveyWidget(),
-                  SizedBox(height: 20,),
+                  const SizedBox(height: 20,),
                     const Text(
                   'Invest Now!',
                   style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),

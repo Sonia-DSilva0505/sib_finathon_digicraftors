@@ -11,8 +11,10 @@ class MutualFund {
 }
 
 class MutualFundsScreen extends StatefulWidget {
+  const MutualFundsScreen({super.key});
+
   @override
-  _MutualFundsScreenState createState() => _MutualFundsScreenState();
+  State<MutualFundsScreen> createState() => _MutualFundsScreenState();
 }
 
 class _MutualFundsScreenState extends State<MutualFundsScreen> {

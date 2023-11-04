@@ -113,6 +113,7 @@ class _TrackingState extends State<Tracking>
 
   final TextEditingController _category = TextEditingController();
   final TextEditingController _amount = TextEditingController();
+   final _pageController = PageController();
 
   
   @override
