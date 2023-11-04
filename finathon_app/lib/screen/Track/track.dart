@@ -136,6 +136,7 @@ class _TrackingState extends State<Tracking>
                                               ),
                                               child: Column(
                                                 children: [
+                                                  
                                                   inputText(
                                                       'Goal',
                                                       'eg: Buy a gift',
@@ -164,7 +165,7 @@ class _TrackingState extends State<Tracking>
                                                       });
                                                       Navigator.pop(context);
                                                     },
-                                                    child: Text(
+                                                    child: const Text(
                                                       "Add Monthly Goal",
                                                       style: TextStyle(
                                                           color: Colors.white),

@@ -1,9 +1,11 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:dotted_border/dotted_border.dart';
+import 'package:finathon_app/provider/ui_provider.dart';
 import 'package:finathon_app/screen/question_popup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nb_utils/nb_utils.dart';
+import 'package:provider/provider.dart';
 import '../utils/banking_colors.dart';
 import '../utils/banking_contants.dart';
 import '../utils/banking_images.dart';
@@ -36,6 +38,8 @@ class BankingHome1State extends State<BankingHome1> {
 
   @override
   Widget build(BuildContext context) {
+    //provider
+    final ui_provider = Provider.of<UIProvider>(context, listen: true);
     List<DragTarget<IconText>> dragTargets = List.generate(8, (index) {
       return DragTarget<IconText>(
         onAccept: (data) {
@@ -99,20 +103,21 @@ class BankingHome1State extends State<BankingHome1> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Text("Hello,Manish",
+                        Text("Hello, Abhishek",
                             style: primaryTextStyle(
-                                color: Banking_TextColorWhite,
-                                size: 16,
+                                color: Colors.black,
+                                size: 20,
+                                weight: FontWeight.bold,
                                 fontFamily: fontRegular)),
-                        Text("How are you today?",
-                            style: primaryTextStyle(
-                                color: Banking_TextColorWhite,
-                                size: 16,
-                                fontFamily: fontRegular)),
+                        // Text("How are you today?",
+                        //     style: primaryTextStyle(
+                        //         color: Banking_TextColorWhite,
+                        //         size: 16,
+                        //         fontFamily: fontRegular)),
                       ],
                     ).expand(),
                     const Icon(Icons.notifications,
-                        size: 30, color: Banking_whitePureColor)
+                        size: 30, color: Colors.black54)
                   ],
                 ),
               ),
@@ -125,7 +130,7 @@ class BankingHome1State extends State<BankingHome1> {
                         gradient: LinearGradient(
                             begin: Alignment.bottomLeft,
                             end: Alignment.topLeft,
-                            colors: <Color>[Banking_Primary, Banking_palColor]),
+                            colors: <Color>[Banking_Primary, Colors.white]),
                       ),
                     ),
                     Container(
@@ -142,7 +147,7 @@ class BankingHome1State extends State<BankingHome1> {
                               children: const [
                                 TopCard(
                                     name: "Default Account",
-                                    acno: "1234567899",
+                                    acno: "158169945138",
                                     bal: "\$12,500"),
                                 TopCard(
                                     name: "Adam Johnson",
@@ -295,26 +300,26 @@ class BankingHome1State extends State<BankingHome1> {
                               showBottomSheet(
                                 context: context,
                                 builder: (context) {
-                                  return  ListView(
+                                  return ListView(
                                     scrollDirection: Axis.horizontal,
                                     children: const [
                                       Draggable<IconText>(
                                         data: IconText(
-                                            icon: Icon(Icons.balance),
+                                            iconPath: "images/icons/fd.png",
                                             text: "balance"),
                                         feedback: Icon(Icons.balance),
                                         child: IconText(
-                                            icon: Icon(Icons.balance),
+                                            iconPath: "images/icons/fd.png",
                                             text: "balance"),
                                       ),
                                       Draggable<IconText>(
                                         data: IconText(
-                                            icon: Icon(Icons.file_download),
-                                            text: "fd"),
-                                        feedback: Icon(Icons.file_download),
+                                            iconPath: "images/icons/fd.png",
+                                            text: "balance"),
+                                        feedback: Icon(Icons.balance),
                                         child: IconText(
-                                            icon: Icon(Icons.file_download),
-                                            text: "fd"),
+                                            iconPath: "images/icons/fd.png",
+                                            text: "balance"),
                                       ),
                                     ],
                                   );
@@ -334,7 +339,7 @@ class BankingHome1State extends State<BankingHome1> {
                   spacing: 8,
                   alignment: WrapAlignment.center,
                   children: [
-                    for (var target in dragTargets)
+                    for (var target in isEditing ? dragTargets: ui_provider.iconList)
                       Padding(
                         padding: const EdgeInsets.all(8),
                         child: target,

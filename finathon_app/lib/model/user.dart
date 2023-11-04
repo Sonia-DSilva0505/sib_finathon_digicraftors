@@ -7,6 +7,7 @@ class User {
   Map<String, int > tages  = {};
   final String dateOfBirth;
   double userScore;
+  
 
   User({
     required this.name,
