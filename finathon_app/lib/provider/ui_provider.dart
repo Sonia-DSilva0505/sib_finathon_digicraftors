@@ -2,23 +2,11 @@ import 'package:finathon_app/utils/icon_text.dart';
 import 'package:flutter/material.dart';
 
 class UIProvider extends ChangeNotifier {
-<<<<<<< Updated upstream
-  List<IconText> iconList = [
-    IconText(iconPath: "images/icons/fd.png", text: "balance"),
-    IconText(iconPath: "images/icons/fd.png", text: "balance"),
-    IconText(iconPath: "images/icons/fd.png", text: "balance"),
-    IconText(iconPath: "images/icons/fd.png", text: "balance"),
-    IconText(iconPath: "images/icons/fd.png", text: "balance"),
-    IconText(iconPath: "images/icons/fd.png", text: "balance"),
-    IconText(iconPath: "images/icons/fd.png", text: "balance"),
-    IconText(iconPath: "images/icons/fd.png", text: "balance"),
-=======
   final most_used_feature = [
     'transaction_imps',
     'transaction_own_acc',
     'transaction_neft',
     'gold_loan_renew'
->>>>>>> Stashed changes
   ];
 
   // For every feature, we have a component in the UI

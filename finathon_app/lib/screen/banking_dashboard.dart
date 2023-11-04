@@ -1,6 +1,5 @@
 import 'package:finathon_app/screen/Track/track.dart';
 import 'package:finathon_app/screen/banking_menu.dart';
-import 'package:finathon_app/screen/question_popup.dart';
 import 'package:flutter/material.dart';
 import '../utils/banking_bottom_navigation_bar.dart';
 import '../utils/banking_colors.dart';
@@ -33,43 +32,12 @@ class _BankingDashboardState extends State<BankingDashboard> {
   void initState() {
     super.initState();
     selectedIndex = 0;
-    Future.delayed(Duration.zero, () => showMyDialog(context));
   }
 
   void _onItemTapped(int index) {
     setState(() {
       selectedIndex = index;
     });
-  }
-
-  void showMyDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: const Text('Take Survey'),
-          content: const SurveyWidget(),
-          actions: <Widget>[
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text('Skip'),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text(
-                'Submit',
-                style:
-                    TextStyle(fontWeight: FontWeight.bold, color: Colors.green),
-              ),
-            ),
-          ],
-        );
-      },
-    );
   }
 
   @override

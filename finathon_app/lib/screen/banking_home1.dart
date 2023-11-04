@@ -11,7 +11,6 @@ import '../utils/banking_contants.dart';
 import '../utils/banking_images.dart';
 import '../utils/banking_widget.dart';
 import '../utils/icon_text.dart';
-import '../utils/notofication_service.dart';
 
 List<IconText?> icons = List.generate(8, (index) => null);
 
@@ -39,7 +38,7 @@ class BankingHome1State extends State<BankingHome1> {
   @override
   Widget build(BuildContext context) {
     //provider
-    final ui_provider = Provider.of<UIProvider>(context, listen: true);
+    final uiProvider = Provider.of<UIProvider>(context, listen: true);
     List<DragTarget<IconText>> dragTargets = List.generate(8, (index) {
       return DragTarget<IconText>(
         onAccept: (data) {
@@ -116,8 +115,8 @@ class BankingHome1State extends State<BankingHome1> {
                         //         fontFamily: fontRegular)),
                       ],
                     ).expand(),
-                    const Icon(Icons.notifications,
-                        size: 30, color: Colors.black54)
+                    IconButton(onPressed: (){}, icon: const Icon(Icons.message,
+                        size: 30, color: Colors.black54))
                   ],
                 ),
               ),
@@ -139,7 +138,7 @@ class BankingHome1State extends State<BankingHome1> {
                       decoration: boxDecorationWithRoundedCorners(
                           borderRadius: BorderRadius.circular(10),
                           boxShadow: defaultBoxShadow()),
-                      child: Column(
+                      child: Column(mainAxisSize:MainAxisSize.min ,
                         children: [
                           SizedBox(
                             height: 130,
@@ -237,116 +236,91 @@ class BankingHome1State extends State<BankingHome1> {
           ];
         },
         body: SingleChildScrollView(
-          child: Container(
+          child: Padding(
             padding: const EdgeInsets.all(16),
-            color: Banking_app_Background,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                //Customoizable widget
-                IconButton(
-                  onPressed: () {
-                    LocalNotifications.showSimpleNotification(
-                        title: "Simple Notification",
-                        body: "This is a simple notification",
-                        payload: "This is simple data");
-                    showDialog(
-                      context: context,
-                      builder: (context) {
-                        return AlertDialog(
-                          title: const Text('Take Survey'),
-                          content: const SurveyWidget(),
-                          actions: <Widget>[
-                            TextButton(
+            child: DecoratedBox(
+              decoration: const BoxDecoration(
+                color: Banking_app_Background,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  //Customoizable widget
+                  SizedBox(
+                      child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          const Text(
+                            "Quick Access",
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.w600),
+                          ),
+                          IconButton(
                               onPressed: () {
-                                Navigator.of(context).pop();
-                              },
-                              child: const Text('Skip'),
-                            ),
-                            TextButton(
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                              },
-                              child: const Text(
-                                'Submit',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.green),
-                              ),
-                            ),
-                          ],
-                        );
-                      },
-                    );
-                  },
-                  icon: const Icon(Icons.person),
-                ),
-                SizedBox(
-                    child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      children: [
-                        const Text(
-                          "Quick Access",
-                          style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.w600),
-                        ),
-                        IconButton(
-                            onPressed: () {
-                              setState(() {
-                                isEditing = !isEditing;
-                              });
-                              showBottomSheet(
-                                context: context,
-                                builder: (context) {
-                                  return ListView(
-                                    scrollDirection: Axis.horizontal,
-                                    children: const [
-                                      Draggable<IconText>(
-                                        data: IconText(
-                                            iconPath: "images/icons/fd.png",
-                                            text: "balance"),
-                                        feedback: Icon(Icons.balance),
-                                        child: IconText(
-                                            iconPath: "images/icons/fd.png",
-                                            text: "balance"),
+                                setState(() {
+                                  isEditing = !isEditing;
+                                });
+                                showBottomSheet(
+                                  enableDrag: true,
+                                  context: context,
+                                  builder: (context) {
+                                    return SizedBox(
+                                      height: 200,
+                                      width: MediaQuery.of(context).size.width,
+                                      child: ListView(
+                                        scrollDirection: Axis.horizontal,
+                                        children: const [
+                                          Draggable<IconText>(
+                                            data: IconText(
+                                                iconPath: "images/icons/fd.png",
+                                                text: "balance"),
+                                            feedback: Icon(Icons.balance),
+                                            child: IconText(
+                                                iconPath: "images/icons/fd.png",
+                                                text: "balance"),
+                                          ),
+                                          Draggable<IconText>(
+                                            data: IconText(
+                                                iconPath: "images/icons/fd.png",
+                                                text: "balance"),
+                                            feedback: Icon(Icons.balance),
+                                            child: IconText(
+                                                iconPath: "images/icons/fd.png",
+                                                text: "balance"),
+                                          ),
+                                        ],
                                       ),
-                                      Draggable<IconText>(
-                                        data: IconText(
-                                            iconPath: "images/icons/fd.png",
-                                            text: "balance"),
-                                        feedback: Icon(Icons.balance),
-                                        child: IconText(
-                                            iconPath: "images/icons/fd.png",
-                                            text: "balance"),
-                                      ),
-                                    ],
-                                  );
-                                },
-                              );
-                            },
-                            icon: Image.asset(
-                              "images/icons/write.png",
-                              color: Colors.grey,
-                              width: 16,
-                            )),
-                      ],
-                    ),
-                  ],
-                )),
-                Wrap(
-                  spacing: 8,
-                  alignment: WrapAlignment.center,
-                  children: [
-                    for (var target in isEditing ? dragTargets: ui_provider.iconList)
-                      Padding(
-                        padding: const EdgeInsets.all(8),
-                        child: target,
-                      )
-                  ],
-                ),
-              ],
+                                    );
+                                  },
+                                );
+                              },
+                              icon: Image.asset(
+                                "images/icons/write.png",
+                                color: Colors.grey,
+                                width: 16,
+                              )),
+                        ],
+                      ),
+                    ],
+                  )),
+                  Wrap(
+                    spacing: 8,
+                    alignment: WrapAlignment.center,
+                    children: [
+                      for (var target
+                          in isEditing ? dragTargets : uiProvider.iconList)
+                        Padding(
+                          padding: const EdgeInsets.all(8),
+                          child: target,
+                        )
+                    ],
+                  ),
+                  const SurveyWidget()
+                ],
+              ),
             ),
           ),
         ),
