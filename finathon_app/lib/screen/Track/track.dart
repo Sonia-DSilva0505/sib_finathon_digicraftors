@@ -1,4 +1,5 @@
 import 'package:finathon_app/provider/goal_provider.dart';
+import 'package:finathon_app/screen/All%20Expenses/Transaction_list_widget.dart';
 import 'package:finathon_app/screen/Track/Tabs/my_tab.dart';
 import 'package:finathon_app/screen/Track/re_use.dart';
 import 'package:finathon_app/model/expense.dart';
@@ -419,6 +420,11 @@ class _TrackingState extends State<Tracking>
                   //     ],
                   //   ),
                   // ),
+
+                  //transtions
+                  TranstionList(),
+
+      
                   const SizedBox(height: 32),
 
                   // invest section

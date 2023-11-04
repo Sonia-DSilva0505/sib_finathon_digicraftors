@@ -300,28 +300,32 @@ class BankingHome1State extends State<BankingHome1> {
                               showBottomSheet(
                                 context: context,
                                 builder: (context) {
-                                  return ListView(
-                                    scrollDirection: Axis.horizontal,
-                                    children: const [
-                                      Draggable<IconText>(
-                                        data: IconText(
-                                            iconPath: "images/icons/fd.png",
-                                            text: "balance"),
-                                        feedback: Icon(Icons.balance),
-                                        child: IconText(
-                                            iconPath: "images/icons/fd.png",
-                                            text: "balance"),
-                                      ),
-                                      Draggable<IconText>(
-                                        data: IconText(
-                                            iconPath: "images/icons/fd.png",
-                                            text: "balance"),
-                                        feedback: Icon(Icons.balance),
-                                        child: IconText(
-                                            iconPath: "images/icons/fd.png",
-                                            text: "balance"),
-                                      ),
-                                    ],
+                                  return Container(
+                                    height: 200,
+                                    width: MediaQuery.of(context).size.width,
+                                    child: ListView(
+                                      scrollDirection: Axis.horizontal,
+                                      children: const [
+                                        Draggable<IconText>(
+                                          data: IconText(
+                                              iconPath: "images/icons/fd.png",
+                                              text: "balance"),
+                                          feedback: Icon(Icons.balance),
+                                          child: IconText(
+                                              iconPath: "images/icons/fd.png",
+                                              text: "balance"),
+                                        ),
+                                        Draggable<IconText>(
+                                          data: IconText(
+                                              iconPath: "images/icons/fd.png",
+                                              text: "balance"),
+                                          feedback: Icon(Icons.balance),
+                                          child: IconText(
+                                              iconPath: "images/icons/fd.png",
+                                              text: "balance"),
+                                        ),
+                                      ],
+                                    ),
                                   );
                                 },
                               );

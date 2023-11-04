@@ -1,4 +1,5 @@
 import 'package:finathon_app/provider/goal_provider.dart';
+import 'package:finathon_app/provider/transtion_provider.dart';
 import 'package:finathon_app/provider/ui_provider.dart';
 import 'package:finathon_app/provider/user_provider.dart';
 import 'package:finathon_app/screen/banking_dashboard.dart';
@@ -24,6 +25,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<UserProvider>(create: (context) => UserProvider(),),
         ChangeNotifierProvider<GoalProvider>(create: (context) => GoalProvider(),),
         ChangeNotifierProvider<UIProvider>(create: (context) => UIProvider(),),
+        ChangeNotifierProvider<TransactionProvider>(create: (context) => TransactionProvider(),),
       ],
       child: MaterialApp(
         title: 'Banking UI Flutter',
