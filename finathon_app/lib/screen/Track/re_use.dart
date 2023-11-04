@@ -144,7 +144,7 @@ Column leaderboardTop3PerUser(List<String> top3, int rank) {
             radius: 48,
             child: CircleAvatar(
               radius: 42,
-              child: Image.asset('assets/profile avatar.png'),
+              child: Image.asset("images/banking/profile_avatar.png"),
             ),
           ),
           const Positioned(

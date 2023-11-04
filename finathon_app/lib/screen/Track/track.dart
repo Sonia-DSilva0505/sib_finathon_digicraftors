@@ -11,6 +11,7 @@ import 'package:pie_chart/pie_chart.dart';
 import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+import '../../utils/banking_colors.dart';
 import '../MapScreen/map_screen.dart';
 import '../../utils/app_colors.dart';
 
@@ -34,6 +35,20 @@ class _TrackingState extends State<Tracking>
     MyTab(
       text: 'Monthly',
     ),
+  ];
+
+   List<String> top3 = [
+    'Jay',
+    'Divya',
+    'Shreya',
+  ];
+  List<String> userList = [
+    'Het',
+    'Nishtha',
+    'Vatsal',
+    'Abhishek',
+    'Anjali',
+    'Rahul'
   ];
 
   TabController? tabController;
@@ -340,7 +355,11 @@ class _TrackingState extends State<Tracking>
                   animationDuration: const Duration(milliseconds: 1000),
                   chartLegendSpacing: 38,
                   chartRadius: MediaQuery.of(context).size.width / 1.8,
-                  colorList:  [R.primaryColor, R.primaryColor.withOpacity(0.5),R.primaryColor.withOpacity(0.2),],
+                  colorList: [
+                    R.primaryColor,
+                    R.primaryColor.withOpacity(0.5),
+                    R.primaryColor.withOpacity(0.2),
+                  ],
                   chartType: ChartType.disc,
                   ringStrokeWidth: 0,
                   legendOptions: const LegendOptions(
@@ -379,156 +398,95 @@ class _TrackingState extends State<Tracking>
                   ],
                 ),
                 const SizedBox(height: 16),
-                // SizedBox(
-                //   height: 120,
-                //   child: Row(
-                //     children: [
-                //       const SizedBox(width: 12),
-                //       StreamBuilder(
-                //           stream: homeController.getUserExpenseDetails(),
-                //           builder: (context, snapshot) {
-                //             if (snapshot.connectionState ==
-                //                 ConnectionState.waiting) {
-                //               return const Center(
-                //                 child: CircularProgressIndicator(),
-                //               );
-                //             }
-                //             List<Expense> expenseList1 = snapshot.data!;
-                //             return Expanded(
-                //               child: ListView.builder(
-                //                 itemCount: snapshot.data!.length + 1,
-                //                 scrollDirection: Axis.horizontal,
-                //                 shrinkWrap: true,
-                //                 itemBuilder: (context, index) {
-                //                   if (index == 0) {
-                //                     return GestureDetector(
-                //                       onTap: () {
-                //                         showModalBottomSheet(
-                //                             context: context,
-                //                             builder: (context) {
-                //                               return Container(
-                //                                 height: 400,
-                //                                 padding: const EdgeInsets.symmetric(
-                //                                     horizontal: 24,
-                //                                     vertical: 24),
-                //                                 decoration: BoxDecoration(
-                //                                   color: black,
-                //                                   borderRadius:
-                //                                       BorderRadius.circular(
-                //                                           16),
-                //                                 ),
-                //                                 child: Column(
-                //                                   children: [
-                //                                     inputText(
-                //                                         'Category',
-                //                                         'eg: Food',
-                //                                         _category,
-                //                                         false),
-                //                                     inputText(
-                //                                         'Amount',
-                //                                         'eg: 2000',
-                //                                         _amount,
-                //                                         false),
-                //                                     submit(
-                //                                         context,
-                //                                         _category.text.trim(),
-                //                                         _amount.text),
-                //                                   ],
-                //                                 ),
-                //                               );
-                //                             });
-                //                       },
-                //                       child: Row(
-                //                         children: [
-                //                           DottedBorder(
-                //                             borderType: BorderType.RRect,
-                //                             dashPattern: [3, 3],
-                //                             color: midnightGreenLight,
-                //                             strokeWidth: 4,
-                //                             radius: const Radius.circular(16),
-                //                             child: Container(
-                //                               width: 100,
-                //                               child: const Center(
-                //                                 child: Icon(
-                //                                   Icons
-                //                                       .add_circle_outline_outlined,
-                //                                   size: 36,
-                //                                 ),
-                //                               ),
-                //                             ),
-                //                           ),
-                //                           const SizedBox(width: 16),
-                //                         ],
-                //                       ),
-                //                     );
-                //                   }
-                //                   return Container(
-                //                     margin: const EdgeInsets.only(right: 16),
-                //                     width: 100,
-                //                     height: 120,
-                //                     decoration: BoxDecoration(
-                //                       border: Border.all(
-                //                         color: midnightGreenLight,
-                //                         width: 3,
-                //                       ),
-                //                       borderRadius: BorderRadius.circular(16),
-                //                     ),
-                //                     child: Column(
-                //                       mainAxisAlignment:
-                //                           MainAxisAlignment.center,
-                //                       children: [
-                //                         Container(
-                //                           width: 35,
-                //                           height: 35,
-                //                           child: Icon(
-                //                             (expenseList1[index - 1]
-                //                                         .category ==
-                //                                     'Food')
-                //                                 ? Icons.food_bank_rounded
-                //                                 : ((expenseList1[
-                //                                                 index - 1]
-                //                                             .category ==
-                //                                         'Shopping')
-                //                                     ? Icons
-                //                                         .shopping_bag_rounded
-                //                                     : Icons
-                //                                         .travel_explore_rounded),
-                //                             size: 36,
-                //                           ),
-                //                         ),
-                //                         const SizedBox(height: 5),
-                //                         Text(
-                //                           expenseList1[index - 1].category,
-                //                           style: const TextStyle(
-                //                             fontSize: 14,
-                //                             fontWeight: FontWeight.w400,
-                //                           ),
-                //                         ),
-                //                         const SizedBox(height: 2),
-                //                         Text(
-                //                           '${expenseList1[index - 1].amount}',
-                //                           style: const TextStyle(
-                //                             fontSize: 10,
-                //                             fontWeight: FontWeight.w400,
-                //                           ),
-                //                         ),
-                //                       ],
-                //                     ),
-                //                   );
-                //                 },
-                //               ),
-                //             );
-                //           }),
-                //       const SizedBox(width: 12),
-                //     ],
-                //   ),
-                // ),
+                  Column(
+                    children: [
+                      // top 3
+                      Container(
+                        padding:
+                            const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+                        // height: 160,
+                        width: MediaQuery.of(context).size.width,
+                        decoration: BoxDecoration(
+                          color:Banking_greyColor,
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        child: Stack(
+                          clipBehavior: Clip.none,
+                          children: [
+                            leaderboardTop3PerUser(top3, 2),
+                            Positioned(
+                              top: -60,
+                              left: MediaQuery.of(context).size.width / 3.5,
+                              child: leaderboardTop3PerUser(top3, 1),
+                            ),
+                            Positioned(
+                              right: 0,
+                              child: leaderboardTop3PerUser(top3, 3),
+                            ),
+                          ],
+                        ),
+                      ),
 
-                //transtions
+                      const SizedBox(height: 20),
+
+                      // rest users
+                      Container(
+                        height: 260,
+                        decoration: BoxDecoration(
+                          color: Banking_greyColor,
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        child: ListView.builder(
+                          itemCount: userList.length,
+                          shrinkWrap: true,
+                          // scrollDirection: Axis.horizontal,
+                          itemBuilder: (context, index) {
+                            final newindex = index + 4;
+                            return Column(
+                              children: [
+                                ListTile(
+                                  leading: Stack(
+                                    clipBehavior: Clip.none,
+                                    children: [
+                                      CircleAvatar(
+                                        backgroundColor:Banking_greyColor,
+                                        radius: 24,
+                                        child: CircleAvatar(
+                                          radius: 20,
+                                          child: Image.asset(
+                                              "images/banking/profile_avatar.png"),
+                                        ),
+                                      ),
+                                      const Positioned(
+                                        top: 12,
+                                        right: -8,
+                                        child: CircleAvatar(
+                                          backgroundColor:Banking_greyColor,
+                                          radius: 10,
+                                        ),
+                                      ),
+                                      Positioned(
+                                        top: 14,
+                                        right: -3,
+                                        child: Text(
+                                          '$newindex',
+                                          style: const TextStyle(fontSize: 12),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  title: Text(userList[index]),
+                                ),
+                                const SizedBox(height: 2),
+                              ],
+                            );
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
                 const TranstionList(),
-
                 const SizedBox(height: 32),
-
                 // invest section
                 const Text(
                   'Invest Now!',
@@ -542,15 +500,18 @@ class _TrackingState extends State<Tracking>
                     children: [
                       Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: investNowPage(context, 1, 'Stock', 'images/banking/banner.jpg'),
+                        child: investNowPage(
+                            context, 1, 'Stock', 'images/banking/banner.jpg'),
                       ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: investNowPage(context, 2, 'FD', 'images/banking/banner.jpg'),
+                        child: investNowPage(
+                            context, 2, 'FD', 'images/banking/banner.jpg'),
                       ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: investNowPage(context, 3, 'Equity', 'images/banking/banner.jpg'),
+                        child: investNowPage(
+                            context, 3, 'Equity', 'images/banking/banner.jpg'),
                       ),
                     ],
                   ),

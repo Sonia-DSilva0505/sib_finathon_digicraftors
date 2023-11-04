@@ -58,6 +58,7 @@ dependencies:
   webview_flutter:
   intl: ^0.18.1
   pie_chart:
+  telephony:
 
 dev_dependencies:
   flutter_test:
