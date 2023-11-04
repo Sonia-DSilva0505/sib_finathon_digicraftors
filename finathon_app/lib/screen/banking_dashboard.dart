@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import '../utils/banking_bottom_navigation_bar.dart';
 import '../utils/banking_colors.dart';
 import '../utils/banking_images.dart';
-import '../utils/banking_strings.dart';
 
 import 'banking_home1.dart';
 import 'banking_payment.dart';
