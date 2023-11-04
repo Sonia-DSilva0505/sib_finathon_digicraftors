@@ -1,17 +1,19 @@
+import 'package:finathon_app/provider/transtion_provider.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:provider/provider.dart';
 import 'package:readsms/readsms.dart';
+import 'package:finathon_app/model/transtions.dart';
 
-
-class SMSReader extends StatefulWidget {
-  const SMSReader({Key? key}) : super(key: key);
+class SMSScreen extends StatefulWidget {
+  const SMSScreen({Key? key}) : super(key: key);
 
   @override
-  State<SMSReader> createState() => _SMSReaderState();
+  State<SMSScreen> createState() => _SMSScreenState();
 }
 
-class _SMSReaderState extends State<SMSReader> {
+class _SMSScreenState extends State<SMSScreen> {
   final _plugin = Readsms();
   String sms = 'no sms received';
   String sender = 'no sms received';
@@ -20,6 +22,7 @@ class _SMSReaderState extends State<SMSReader> {
   @override
   void initState() {
     super.initState();
+    final tp = Provider.of<TransactionProvider>(context);
     getPermission().then((value) {
       if (value) {
         _plugin.read();
@@ -28,6 +31,7 @@ class _SMSReaderState extends State<SMSReader> {
             sms = event.body;
             sender = event.sender;
             time = event.timeReceived.toString();
+            tp.transtions.insert(0, Transaction(date: DateTime(11, 11, 2003), amount: "200", category: "SMs", withdrawal: true), );
           });
         });
       }
@@ -54,12 +58,7 @@ class _SMSReaderState extends State<SMSReader> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Plugin example app'),
-        ),
-        body: Center(
+    return  Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -68,8 +67,6 @@ class _SMSReaderState extends State<SMSReader> {
               Text('new sms time: $time'),
             ],
           ),
-        ),
-      ),
-    );
+        );
   }
 }

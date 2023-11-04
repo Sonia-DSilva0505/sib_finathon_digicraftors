@@ -1,12 +1,19 @@
+
+
+import 'package:finathon_app/model/transtions.dart';
 import 'package:finathon_app/provider/goal_provider.dart';
+import 'package:finathon_app/provider/transtion_provider.dart';
 import 'package:finathon_app/screen/All%20Expenses/transaction_list_widget.dart';
+import 'package:finathon_app/screen/SMS/sms.dart';
 import 'package:finathon_app/screen/Track/Tabs/my_tab.dart';
 import 'package:finathon_app/screen/Track/re_use.dart';
 import 'package:finathon_app/model/expense.dart';
 import 'package:finathon_app/screen/Track/show_goal_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:dotted_border/dotted_border.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
+import 'package:readsms/readsms.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../MapScreen/map_screen.dart';
@@ -35,12 +42,37 @@ class _TrackingState extends State<Tracking>
   ];
 
   TabController? tabController;
+  final _plugin = Readsms();
+  String sms = 'no sms received';
+  String sender = 'no sms received';
+  String time = 'no sms received';
 
   @override
   void initState() {
     tabController = TabController(length: 2, vsync: this);
     super.initState();
+     print("hello");
+   
+    
+
+  
+
+    
+    
   }
+
+  Future<bool> getPermission() async {
+    if (await Permission.sms.status == PermissionStatus.granted) {
+      return true;
+    } else {
+      if (await Permission.sms.request() == PermissionStatus.granted) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  }
+
 
   @override
   void dispose() {
@@ -90,7 +122,7 @@ class _TrackingState extends State<Tracking>
     return SafeArea(
       child: SingleChildScrollView(
         child: SizedBox(
-          height: MediaQuery.of(context).size.height + 200,
+          height: MediaQuery.of(context).size.height + 1200,
           child: Scaffold(
             body: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -328,6 +360,7 @@ class _TrackingState extends State<Tracking>
                   // daily weekly chart
                   tabsContainer(context, tabController!, myTabs),
                   const SizedBox(height: 8),
+               
 
                   // expense section
                   Row(
@@ -489,10 +522,11 @@ class _TrackingState extends State<Tracking>
                   //           }),
                   //       const SizedBox(width: 12),
                   //     ],
-                  //   ),
+                  //   ),55
                   // ),
 
                   //transtions
+                     SMSScreen(),
                   const TranstionList(),
 
       
