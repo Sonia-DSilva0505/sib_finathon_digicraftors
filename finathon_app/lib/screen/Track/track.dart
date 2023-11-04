@@ -114,8 +114,7 @@ class _TrackingState extends State<Tracking>
   final TextEditingController _category = TextEditingController();
   final TextEditingController _amount = TextEditingController();
 
-  final _pageController = PageController();
-
+  
   @override
   Widget build(BuildContext context) {
     final goalProvider = Provider.of<GoalProvider>(context, listen: true);
@@ -155,47 +154,51 @@ class _TrackingState extends State<Tracking>
                               showModalBottomSheet(
                                   isScrollControlled: true,
                                   context: context,
+                                  
                                   builder: (context) {
                                     return Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 24, vertical: 24),
-                                      child: DecoratedBox(
-                                        decoration: BoxDecoration(
-                                          color: Colors.white54,
-                                          borderRadius:
-                                              BorderRadius.circular(16),
-                                        ),
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: [
-                                            inputText('Goal', 'eg: Buy a gift',
-                                                _category, false),
-                                            inputText('Amount', 'eg: 2000',
-                                                _amount, false),
-                                            ElevatedButton(
-                                              style: ElevatedButton.styleFrom(
-                                                  padding:
-                                                      const EdgeInsets.all(18),
-                                                  backgroundColor:
-                                                      R.primaryColor),
-                                              onPressed: () {
-                                                //set amount and desc
-                                                goalProvider.goal_amount =
-                                                    _amount.text;
-                                                goalProvider.goal_desc =
-                                                    _category.text;
-                                                goalProvider.is_goal_assigned =
-                                                    true;
-                                                setState(() {});
-                                                Navigator.pop(context);
-                                              },
-                                              child: const Text(
-                                                "Add Monthly Goal",
-                                                style: TextStyle(
-                                                    color: Colors.white),
+                                      padding:  EdgeInsets.only(
+                        bottom: MediaQuery.of(context).viewInsets.bottom),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(24.0),
+                                        child: DecoratedBox(
+                                          decoration: BoxDecoration(
+                                            color: Colors.white54,
+                                            borderRadius:
+                                                BorderRadius.circular(16),
+                                          ),
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              inputText('Goal', 'eg: Buy a gift',
+                                                  _category, false),
+                                              inputText('Amount', 'eg: 2000',
+                                                  _amount, false),
+                                              ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                    padding:
+                                                        const EdgeInsets.all(18),
+                                                    backgroundColor:
+                                                        R.primaryColor),
+                                                onPressed: () {
+                                                  //set amount and desc
+                                                  goalProvider.goal_amount =
+                                                      _amount.text;
+                                                  goalProvider.goal_desc =
+                                                      _category.text;
+                                                  goalProvider.is_goal_assigned =
+                                                      true;
+                                                  setState(() {});
+                                                  Navigator.pop(context);
+                                                },
+                                                child: const Text(
+                                                  "Add Monthly Goal",
+                                                  style: TextStyle(
+                                                      color: Colors.white),
+                                                ),
                                               ),
-                                            ),
-                                          ],
+                                            ],
+                                          ),
                                         ),
                                       ),
                                     );
