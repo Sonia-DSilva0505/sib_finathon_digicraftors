@@ -57,6 +57,7 @@ dependencies:
   flutter_background:
   webview_flutter:
   intl: ^0.18.1
+  pie_chart:
 
 dev_dependencies:
   flutter_test:

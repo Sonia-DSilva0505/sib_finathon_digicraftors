@@ -1,5 +1,3 @@
-
-
 import 'package:finathon_app/provider/goal_provider.dart';
 import 'package:finathon_app/screen/All%20Expenses/transaction_list_widget.dart';
 import 'package:finathon_app/screen/Track/Tabs/my_tab.dart';
@@ -9,6 +7,7 @@ import 'package:finathon_app/screen/Track/show_goal_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:pie_chart/pie_chart.dart';
 import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -46,13 +45,6 @@ class _TrackingState extends State<Tracking>
   void initState() {
     tabController = TabController(length: 2, vsync: this);
     super.initState();
-   
-    
-
-  
-
-    
-    
   }
 
   Future<bool> getPermission() async {
@@ -66,7 +58,6 @@ class _TrackingState extends State<Tracking>
       }
     }
   }
-
 
   @override
   void dispose() {
@@ -118,7 +109,8 @@ class _TrackingState extends State<Tracking>
         body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: Column(mainAxisSize: MainAxisSize.min,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(
@@ -161,18 +153,14 @@ class _TrackingState extends State<Tracking>
                                         child: Column(
                                           mainAxisSize: MainAxisSize.min,
                                           children: [
-                                            inputText(
-                                                'Goal',
-                                                'eg: Buy a gift',
-                                                _category,
-                                                false),
+                                            inputText('Goal', 'eg: Buy a gift',
+                                                _category, false),
                                             inputText('Amount', 'eg: 2000',
                                                 _amount, false),
                                             ElevatedButton(
                                               style: ElevatedButton.styleFrom(
                                                   padding:
-                                                      const EdgeInsets.all(
-                                                          18),
+                                                      const EdgeInsets.all(18),
                                                   backgroundColor:
                                                       R.primaryColor),
                                               onPressed: () {
@@ -181,8 +169,8 @@ class _TrackingState extends State<Tracking>
                                                     _amount.text;
                                                 goalProvider.goal_desc =
                                                     _category.text;
-                                                goalProvider
-                                                    .is_goal_assigned = true;
+                                                goalProvider.is_goal_assigned =
+                                                    true;
                                                 setState(() {});
                                                 Navigator.pop(context);
                                               },
@@ -226,20 +214,16 @@ class _TrackingState extends State<Tracking>
                                 return GestureDetector(
                                   onTap: () {
                                     setState(() {
-                                      
-                                      _amount.text =goalListAmt[index];
-                                                      _category.text = goalList[index];
-        
+                                      _amount.text = goalListAmt[index];
+                                      _category.text = goalList[index];
                                     });
                                     showModalBottomSheet(
                                         isScrollControlled: true,
                                         context: context,
                                         builder: (context) {
                                           return Padding(
-                                            padding:
-                                                const EdgeInsets.symmetric(
-                                                    horizontal: 24,
-                                                    vertical: 24),
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: 24, vertical: 24),
                                             child: DecoratedBox(
                                               decoration: BoxDecoration(
                                                 color: Colors.white54,
@@ -247,8 +231,7 @@ class _TrackingState extends State<Tracking>
                                                     BorderRadius.circular(16),
                                               ),
                                               child: Column(
-                                                mainAxisSize:
-                                                    MainAxisSize.min,
+                                                mainAxisSize: MainAxisSize.min,
                                                 children: [
                                                   inputText(
                                                       'Goal',
@@ -266,14 +249,11 @@ class _TrackingState extends State<Tracking>
                                                             padding:
                                                                 const EdgeInsets
                                                                     .all(18),
-                                                            backgroundColor: R
-                                                                .primaryColor),
+                                                            backgroundColor:
+                                                                R.primaryColor),
                                                     onPressed: () {
-        
-        
                                                       //set amount and desc
-                                                      goalProvider
-                                                              .goal_amount =
+                                                      goalProvider.goal_amount =
                                                           _amount.text;
                                                       goalProvider.goal_desc =
                                                           _category.text;
@@ -286,8 +266,7 @@ class _TrackingState extends State<Tracking>
                                                     child: const Text(
                                                       "Add Monthly Goal",
                                                       style: TextStyle(
-                                                          color:
-                                                              Colors.white),
+                                                          color: Colors.white),
                                                     ),
                                                   ),
                                                 ],
@@ -304,8 +283,7 @@ class _TrackingState extends State<Tracking>
                                           color: R.primaryColor,
                                           width: 3,
                                         ),
-                                        borderRadius:
-                                            BorderRadius.circular(16),
+                                        borderRadius: BorderRadius.circular(16),
                                       ),
                                       child: Padding(
                                         padding: const EdgeInsets.symmetric(
@@ -348,19 +326,49 @@ class _TrackingState extends State<Tracking>
                         ],
                       ),
                 const SizedBox(height: 24),
-        
+
                 // daily weekly chart
                 tabsContainer(context, tabController!, myTabs),
                 const SizedBox(height: 8),
-        
+                PieChart(
+                  dataMap: const {
+                    "Food": 500,
+                    "Transportation": 300,
+                    "Rent": 700,
+                    // Add more categories if needed
+                  },
+                  animationDuration: const Duration(milliseconds: 1000),
+                  chartLegendSpacing: 38,
+                  chartRadius: MediaQuery.of(context).size.width / 1.8,
+                  colorList:  [R.primaryColor, R.primaryColor.withOpacity(0.5),R.primaryColor.withOpacity(0.2),],
+                  chartType: ChartType.disc,
+                  ringStrokeWidth: 0,
+                  legendOptions: const LegendOptions(
+                    legendShape: BoxShape.rectangle,
+                    showLegendsInRow: false,
+                    legendPosition: LegendPosition.right,
+                    showLegends: true,
+                    legendTextStyle: TextStyle(fontSize: 12),
+                  ),
+                  chartValuesOptions: const ChartValuesOptions(
+                    showChartValueBackground: false,
+                    showChartValues: true,
+                    showChartValuesInPercentage: false,
+                    showChartValuesOutside: false,
+                    chartValueStyle: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
                 // expense section
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     const Text(
                       'Expenses',
-                      style: TextStyle(
-                          fontSize: 24, fontWeight: FontWeight.w500),
+                      style:
+                          TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
                     ),
                     IconButton(
                         onPressed: () {
@@ -515,13 +523,12 @@ class _TrackingState extends State<Tracking>
                 //     ],
                 //   ),
                 // ),
-        
+
                 //transtions
                 const TranstionList(),
-        
-              
+
                 const SizedBox(height: 32),
-        
+
                 // invest section
                 const Text(
                   'Invest Now!',
@@ -533,10 +540,18 @@ class _TrackingState extends State<Tracking>
                   child: PageView(
                     controller: _pageController,
                     children: [
-                      investNowPage(context, 1, 'stock', 'assets/stock.svg'),
-                      investNowPage(context, 2, 'FD', 'assets/fd.svg'),
-                      investNowPage(
-                          context, 3, 'Equity', 'assets/mutual.svg'),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: investNowPage(context, 1, 'Stock', 'images/banking/banner.jpg'),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: investNowPage(context, 2, 'FD', 'images/banking/banner.jpg'),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: investNowPage(context, 3, 'Equity', 'images/banking/banner.jpg'),
+                      ),
                     ],
                   ),
                 ),

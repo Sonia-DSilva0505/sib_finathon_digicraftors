@@ -307,14 +307,7 @@ Container investNowPage(
     decoration: BoxDecoration(
       color: Colors.grey,
       borderRadius: BorderRadius.circular(16),
-    ),
-    child: Text(
-      topic,
-      textAlign: TextAlign.center,
-      style: const TextStyle(
-        fontSize: 20,
-        fontWeight: FontWeight.w500,
-      ),
+     image: DecorationImage(image: AssetImage(img, ),fit: BoxFit.cover)
     ),
   );
 }
