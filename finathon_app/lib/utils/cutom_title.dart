@@ -26,17 +26,17 @@ Widget customTitleWithSeeAll(
                         children: [
                           Draggable<IconText>(
                             data: IconText(
-                                icon: Icon(Icons.balance), text: "balance"),
+                                iconPath: "images/icons/fd.png", text: "balance"),
                             feedback: Icon(Icons.balance),
                             child: IconText(
-                                icon: Icon(Icons.balance), text: "balance"),
+                               iconPath: "images/icons/fd.png", text: "balance"),
                           ),
                           Draggable<IconText>(
                             data: IconText(
-                                icon: Icon(Icons.file_download), text: "fd"),
-                            feedback: Icon(Icons.file_download),
+                                iconPath: "images/icons/fd.png", text: "balance"),
+                            feedback: Icon(Icons.balance),
                             child: IconText(
-                                icon: Icon(Icons.file_download), text: "fd"),
+                               iconPath: "images/icons/fd.png", text: "balance"),
                           ),
                         ],
                       ),
