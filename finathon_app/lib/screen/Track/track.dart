@@ -93,7 +93,7 @@ class _TrackingState extends State<Tracking>
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 8,
                   ),
                   // goal section
@@ -111,7 +111,7 @@ class _TrackingState extends State<Tracking>
                   const SizedBox(height: 16),
                   //add goals widget or show goal
                   goalProvider.is_goal_assigned
-                      ? ShowGoalWidget()
+                      ? const ShowGoalWidget()
                       : Expanded(
                           child: ListView.builder(
                               scrollDirection: Axis.horizontal,
@@ -164,7 +164,7 @@ class _TrackingState extends State<Tracking>
                                                       });
                                                       Navigator.pop(context);
                                                     },
-                                                    child: Text(
+                                                    child: const Text(
                                                       "Add Monthly Goal",
                                                       style: TextStyle(
                                                           color: Colors.white),

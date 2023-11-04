@@ -2,7 +2,6 @@ import 'package:finathon_app/provider/goal_provider.dart';
 import 'package:finathon_app/provider/user_provider.dart';
 import 'package:finathon_app/screen/banking_dashboard.dart';
 import 'package:flutter/material.dart';
-import 'package:nb_utils/nb_utils.dart';
 import 'package:provider/provider.dart';
 
 import 'utils/app_colors.dart';
