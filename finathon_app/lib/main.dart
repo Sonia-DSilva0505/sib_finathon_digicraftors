@@ -1,7 +1,11 @@
+import 'package:finathon_app/provider/goal_provider.dart';
 import 'package:finathon_app/provider/user_provider.dart';
 import 'package:finathon_app/screen/banking_dashboard.dart';
 import 'package:flutter/material.dart';
+import 'package:nb_utils/nb_utils.dart';
 import 'package:provider/provider.dart';
+
+import 'utils/app_colors.dart';
 
 void main() {
   runApp(
@@ -17,12 +21,14 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<UserProvider>(create: (context) => UserProvider(),),
+        ChangeNotifierProvider<GoalProvider>(create: (context) => GoalProvider(),),
       ],
       child: MaterialApp(
         title: 'Banking UI Flutter',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          primarySwatch: Colors.blue,
+          primaryColor: R.primaryColor,
+          // primarySwatch: Colors.red,
         ),
         home: const BankingDashboard(),
       ),
