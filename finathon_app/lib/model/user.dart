@@ -4,9 +4,10 @@ class User {
   final String name;
   final String email;
   final String id;
-  
+  Map<String, int > tages  = {};
   final String dateOfBirth;
   double userScore;
+  
 
   User({
     required this.name,

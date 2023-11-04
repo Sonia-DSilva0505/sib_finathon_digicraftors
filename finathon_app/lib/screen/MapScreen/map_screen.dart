@@ -1,11 +1,11 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:custom_info_window/custom_info_window.dart';
-import 'package:finathon_app/MapScreen/location_lat_long.dart';
+import 'package:finathon_app/screen/MapScreen/location_lat_long.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:http/http.dart' as http;
-import '../utils/app_colors.dart';
+import '../../utils/app_colors.dart';
 import 'custom_marker_card.dart';
 
 class MapScreen extends StatefulWidget {

@@ -1,18 +1,16 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:dotted_border/dotted_border.dart';
+import 'package:finathon_app/provider/ui_provider.dart';
 import 'package:finathon_app/screen/question_popup.dart';
-import 'package:finathon_app/utils/cutom_title.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nb_utils/nb_utils.dart';
-import '../model/banking_model.dart';
+import 'package:provider/provider.dart';
 import '../utils/banking_colors.dart';
 import '../utils/banking_contants.dart';
-import '../utils/banking_data_generator.dart';
 import '../utils/banking_images.dart';
 import '../utils/banking_widget.dart';
 import '../utils/icon_text.dart';
-import '../utils/notofication_service.dart';
 
 List<IconText?> icons = List.generate(8, (index) => null);
 
@@ -28,63 +26,56 @@ class BankingHome1 extends StatefulWidget {
 class BankingHome1State extends State<BankingHome1> {
   int currentIndexPage = 0;
   int? pageLength;
-
-  late List<BankingHomeModel> mList1;
-  late List<BankingHomeModel2> mList2;
-
-  List<DragTarget<IconText>> dragTargets = List.generate(8, (index) {
-    return DragTarget<IconText>(
-      onAccept: (data) {
-        if (icons[index] == null) {
-          // setState(() {
-          icons[index] = data;
-          // });
-        }
-      },
-      builder: (BuildContext context, List<IconText?> candidateData,
-          List<dynamic> rejectedData) {
-        return DottedBorder(
-          color: Colors.black,
-          // gap: 3,
-
-          strokeWidth: 1,
-          child: Container(
-            color: Colors.grey,
-            width: 55,
-            height: 55,
-            child: Center(
-              child: icons[index] != null
-                  ? icons[index]!
-                  : const Text(
-                      'Drag here',
-                      style: TextStyle(
-                        fontSize: 7,
-                      ),
-                    ),
-            ),
-          ),
-        );
-      },
-    );
-  });
+  bool isEditing = false;
 
   @override
   void initState() {
     super.initState();
     currentIndexPage = 0;
     pageLength = 3;
-    mList1 = bankingHomeList1();
-    mList2 = bankingHomeList2();
-
-    
   }
-
-
-
 
   @override
   Widget build(BuildContext context) {
-   
+    //provider
+    final uiProvider = Provider.of<UIProvider>(context, listen: true);
+    List<DragTarget<IconText>> dragTargets = List.generate(8, (index) {
+      return DragTarget<IconText>(
+        onAccept: (data) {
+          if (icons[index] == null && isEditing) {
+            icons[index] = data;
+          }
+        },
+        builder: (BuildContext context, List<IconText?> candidateData,
+            List<dynamic> rejectedData) {
+          return DottedBorder(
+            color: icons[index]?.text == null
+                ? Colors.grey
+                : Banking_app_Background,
+            // gap: 3,
+
+            strokeWidth: 1,
+            child: Container(
+              color: const Color(0xffd6d6d6),
+              width: 55,
+              height: 55,
+              child: Center(
+                child: icons[index] != null
+                    ? icons[index]!
+                    : isEditing
+                        ? const Text(
+                            'Drag here',
+                            style: TextStyle(
+                              fontSize: 7,
+                            ),
+                          )
+                        : const SizedBox.shrink(),
+              ),
+            ),
+          );
+        },
+      );
+    });
     return Scaffold(
       body: NestedScrollView(
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
@@ -111,20 +102,21 @@ class BankingHome1State extends State<BankingHome1> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Text("Hello,Manish",
+                        Text("Hello, Abhishek",
                             style: primaryTextStyle(
-                                color: Banking_TextColorWhite,
-                                size: 16,
+                                color: Colors.black,
+                                size: 20,
+                                weight: FontWeight.bold,
                                 fontFamily: fontRegular)),
-                        Text("How are you today?",
-                            style: primaryTextStyle(
-                                color: Banking_TextColorWhite,
-                                size: 16,
-                                fontFamily: fontRegular)),
+                        // Text("How are you today?",
+                        //     style: primaryTextStyle(
+                        //         color: Banking_TextColorWhite,
+                        //         size: 16,
+                        //         fontFamily: fontRegular)),
                       ],
                     ).expand(),
-                    const Icon(Icons.notifications,
-                        size: 30, color: Banking_whitePureColor)
+                    IconButton(onPressed: (){}, icon: const Icon(Icons.message,
+                        size: 30, color: Colors.black54))
                   ],
                 ),
               ),
@@ -137,7 +129,7 @@ class BankingHome1State extends State<BankingHome1> {
                         gradient: LinearGradient(
                             begin: Alignment.bottomLeft,
                             end: Alignment.topLeft,
-                            colors: <Color>[Banking_Primary, Banking_palColor]),
+                            colors: <Color>[Banking_Primary, Colors.white]),
                       ),
                     ),
                     Container(
@@ -146,7 +138,7 @@ class BankingHome1State extends State<BankingHome1> {
                       decoration: boxDecorationWithRoundedCorners(
                           borderRadius: BorderRadius.circular(10),
                           boxShadow: defaultBoxShadow()),
-                      child: Column(
+                      child: Column(mainAxisSize:MainAxisSize.min ,
                         children: [
                           SizedBox(
                             height: 130,
@@ -154,7 +146,7 @@ class BankingHome1State extends State<BankingHome1> {
                               children: const [
                                 TopCard(
                                     name: "Default Account",
-                                    acno: "1234567899",
+                                    acno: "158169945138",
                                     bal: "\$12,500"),
                                 TopCard(
                                     name: "Adam Johnson",
@@ -244,161 +236,91 @@ class BankingHome1State extends State<BankingHome1> {
           ];
         },
         body: SingleChildScrollView(
-          child: Container(
+          child: Padding(
             padding: const EdgeInsets.all(16),
-            color: Banking_app_Background,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                //Customoizable widget
-                IconButton(
-                  onPressed: () {
-                    LocalNotifications.showSimpleNotification(
-                        title: "Simple Notification",
-                        body: "This is a simple notification",
-                        payload: "This is simple data");
-                    showDialog(
-                      context: context,
-                      builder: (context) {
-                        return AlertDialog(
-                          title: const Text('Take Survey'),
-                          content: const SurveyWidget(),
-                          actions: <Widget>[
-                            TextButton(
+            child: DecoratedBox(
+              decoration: const BoxDecoration(
+                color: Banking_app_Background,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  //Customoizable widget
+                  SizedBox(
+                      child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          const Text(
+                            "Quick Access",
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.w600),
+                          ),
+                          IconButton(
                               onPressed: () {
-                                Navigator.of(context).pop();
+                                setState(() {
+                                  isEditing = !isEditing;
+                                });
+                                showBottomSheet(
+                                  enableDrag: true,
+                                  context: context,
+                                  builder: (context) {
+                                    return SizedBox(
+                                      height: 200,
+                                      width: MediaQuery.of(context).size.width,
+                                      child: ListView(
+                                        scrollDirection: Axis.horizontal,
+                                        children: const [
+                                          Draggable<IconText>(
+                                            data: IconText(
+                                                iconPath: "images/icons/fd.png",
+                                                text: "balance"),
+                                            feedback: Icon(Icons.balance),
+                                            child: IconText(
+                                                iconPath: "images/icons/fd.png",
+                                                text: "balance"),
+                                          ),
+                                          Draggable<IconText>(
+                                            data: IconText(
+                                                iconPath: "images/icons/fd.png",
+                                                text: "balance"),
+                                            feedback: Icon(Icons.balance),
+                                            child: IconText(
+                                                iconPath: "images/icons/fd.png",
+                                                text: "balance"),
+                                          ),
+                                        ],
+                                      ),
+                                    );
+                                  },
+                                );
                               },
-                              child: const Text('Skip'),
-                            ),
-                            TextButton(
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                              },
-                              child: const Text(
-                                'Submit',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.green),
-                              ),
-                            ),
-                          ],
-                        );
-                      },
-                    );
-                  },
-                  icon: const Icon(Icons.person),
-                ),
-                customTitleWithSeeAll(context, "Quick Access", () {}, true),
-                Container(
-                  color: Colors.orange.withOpacity(0.1),
-                  child: Wrap(
-                    spacing: 10,
+                              icon: Image.asset(
+                                "images/icons/write.png",
+                                color: Colors.grey,
+                                width: 16,
+                              )),
+                        ],
+                      ),
+                    ],
+                  )),
+                  Wrap(
+                    spacing: 8,
                     alignment: WrapAlignment.center,
                     children: [
-                      for (var target in dragTargets)
+                      for (var target
+                          in isEditing ? dragTargets : uiProvider.iconList)
                         Padding(
                           padding: const EdgeInsets.all(8),
                           child: target,
                         )
                     ],
                   ),
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text("Recently Transaction",
-                        style: primaryTextStyle(
-                            size: 16,
-                            color: Banking_TextColorPrimary,
-                            fontFamily: fontRegular)),
-                    Text("22 Feb 2020",
-                        style: primaryTextStyle(
-                            size: 16,
-                            color: Banking_TextColorSecondary,
-                            fontFamily: fontRegular)),
-                  ],
-                ),
-                ListView.builder(
-                  scrollDirection: Axis.vertical,
-                  itemCount: mList1.length,
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemBuilder: (BuildContext context, int index) {
-                    return Container(
-                      padding: const EdgeInsets.all(8),
-                      margin: const EdgeInsets.only(top: 8, bottom: 8),
-                      decoration: boxDecorationRoundedWithShadow(8,
-                          backgroundColor: Banking_whitePureColor,
-                          spreadRadius: 0,
-                          blurRadius: 0),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Icon(Icons.account_balance_wallet,
-                              size: 30, color: mList1[index].color),
-                          10.width,
-                          Text('${mList1[index].title}',
-                                  style: primaryTextStyle(
-                                      size: 16,
-                                      color: mList1[index].color,
-                                      fontFamily: fontMedium))
-                              .expand(),
-                          Text(mList1[index].bal!,
-                              style: primaryTextStyle(
-                                  color: mList1[index].color, size: 16)),
-                        ],
-                      ),
-                    );
-                  },
-                ),
-                16.height,
-                Text("22 Feb 2020",
-                    style: primaryTextStyle(
-                        size: 16,
-                        color: Banking_TextColorSecondary,
-                        fontFamily: fontRegular)),
-                const Divider(),
-                ListView.builder(
-                  scrollDirection: Axis.vertical,
-                  itemCount: 15,
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemBuilder: (BuildContext context, int index) {
-                    BankingHomeModel2 data = mList2[index % mList2.length];
-                    return Container(
-                      padding: const EdgeInsets.all(8),
-                      margin: const EdgeInsets.only(top: 8, bottom: 8),
-                      decoration: boxDecorationRoundedWithShadow(8,
-                          backgroundColor: Banking_whitePureColor,
-                          spreadRadius: 0,
-                          blurRadius: 0),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Image.asset(data.icon!,
-                              height: 30,
-                              width: 30,
-                              color: index == 2
-                                  ? Banking_Primary
-                                  : Banking_Primary),
-                          10.width,
-                          Text(data.title!,
-                                  style: primaryTextStyle(
-                                      size: 16,
-                                      color: Banking_TextColorPrimary,
-                                      fontFamily: fontRegular))
-                              .expand(),
-                          Align(
-                              alignment: Alignment.centerRight,
-                              child: Text(data.charge!,
-                                  style: primaryTextStyle(
-                                      color: data.color, size: 16)))
-                        ],
-                      ),
-                    );
-                  },
-                ),
-              ],
+                  const SurveyWidget()
+                ],
+              ),
             ),
           ),
         ),

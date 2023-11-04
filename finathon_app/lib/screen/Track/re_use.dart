@@ -1,9 +1,9 @@
-import 'package:finathon_app/Track/Tabs/tab_daily.dart';
-import 'package:finathon_app/Track/Tabs/tab_weekly.dart';
-import 'package:finathon_app/Track/Tabs/my_tab.dart';
+import 'package:finathon_app/screen/Track/Tabs/tab_daily.dart';
+import 'package:finathon_app/screen/Track/Tabs/tab_weekly.dart';
+import 'package:finathon_app/screen/Track/Tabs/my_tab.dart';
 import 'package:flutter/material.dart';
 
-import '../utils/app_colors.dart';
+import '../../utils/app_colors.dart';
 
 GestureDetector singInUp(BuildContext context, bool isLogin, Function clickMe) {
   return GestureDetector(
@@ -43,6 +43,7 @@ Column inputText(String text, String hintText, TextEditingController controller,
           children: [
             TextSpan(
               text: '$text ',
+              style: const TextStyle(color: Colors.black, fontSize: 11),
             ),
             WidgetSpan(
               child: Transform.translate(
@@ -59,6 +60,7 @@ Column inputText(String text, String hintText, TextEditingController controller,
       const SizedBox(height: 8),
       // textfield
       TextField(
+        
         keyboardType:
             hintText == "Amount" ? TextInputType.number : TextInputType.text,
         controller: controller,
@@ -118,11 +120,11 @@ SizedBox tabsContainer(
           ),
         ),
         Expanded(
-          child:  TabBarView(
+          child: TabBarView(
             controller: tabController,
-            children:const  [
-              TabDaily(),
+            children: const [
               TabWeekly(),
+              TabDaily(),
             ],
           ),
         )
@@ -142,7 +144,7 @@ Column leaderboardTop3PerUser(List<String> top3, int rank) {
             radius: 48,
             child: CircleAvatar(
               radius: 42,
-              child:  Image.asset('assets/profile avatar.png'),
+              child: Image.asset('assets/profile avatar.png'),
             ),
           ),
           const Positioned(

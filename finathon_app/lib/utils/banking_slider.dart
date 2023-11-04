@@ -8,7 +8,6 @@ import 'banking_colors.dart';
 import 'banking_contants.dart';
 import 'banking_data_generator.dart';
 import 'banking_images.dart';
-import 'banking_strings.dart';
 
 class BankingSliderWidget extends StatefulWidget {
   static String tag = '/BankingSlider';
@@ -43,58 +42,45 @@ class BankingSliderWidgetState extends State<BankingSliderWidget> {
             itemBuilder: (BuildContext context, int index) {
               return SizedBox(
                 width: 320,
-                child: Stack(
-                  children: [
-                    SizedBox(
-                        height: 200,
-                        width: 320,
-                        child: Image.asset(Banking_ic_CardImage,
-                            fit: BoxFit.fill)),
-                    Container(
-                      padding: const EdgeInsets.only(left: 16, right: 8),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          24.height,
-                          Row(
-                            children: [
-                              Text(mList[currentIndexPage].name.validate(),
-                                      style: primaryTextStyle(
-                                          color: Banking_whitePureColor,
-                                          size: 18,
-                                          fontFamily: fontMedium))
-                                  .expand(),
-                              Text(Banking_lbl_app_Name,
-                                  style: primaryTextStyle(
-                                      color: Banking_whitePureColor,
-                                      size: 16,
-                                      fontFamily: fontMedium))
-                            ],
-                          ),
-                          24.height,
-                          Text(mList[currentIndexPage].bank.validate(),
-                              style: primaryTextStyle(
-                                  color: Banking_whitePureColor,
-                                  size: 18,
-                                  fontFamily: fontMedium)),
-                          4.height,
-                          Text('1121 *** ** *** 5555',
-                              style: primaryTextStyle(
-                                  color: Banking_whitePureColor,
-                                  size: 18,
-                                  fontFamily: fontMedium)),
-                          8.height,
-                          Text("\$${mList[currentIndexPage].rs.validate()}",
-                              style: primaryTextStyle(
-                                  color: Banking_whitePureColor,
-                                  size: 18,
-                                  fontFamily: fontMedium)),
-                        ],
+                child: ClipRRect( borderRadius: BorderRadius.circular(8.0),
+                  child: Stack(
+                    children: [
+                      SizedBox(
+                          height: 200,
+                          width: 320,
+                          child: Image.asset(Banking_ic_CardImage,
+                              fit: BoxFit.fill)),
+                      Container(
+                        padding: const EdgeInsets.only(left: 16, right: 8),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            24.height,
+                            Text(mList[currentIndexPage].name.validate(),
+                                    style: primaryTextStyle(
+                                        color: Banking_whitePureColor,
+                                        size: 18,
+                                        fontFamily: fontMedium)),
+                                        24.height,
+                            Text(mList[currentIndexPage].bank.validate(),
+                                style: primaryTextStyle(
+                                    color: Banking_whitePureColor,
+                                    size: 18,
+                                    fontFamily: fontMedium)),
+                            4.height,
+                            Text('1121 *** ** *** 5555',
+                                style: primaryTextStyle(
+                                    color: Banking_whitePureColor,
+                                    size: 18,
+                                    fontFamily: fontMedium)),
+                            8.height,
+                          ],
+                        ),
                       ),
-                    ),
-                    10.height,
-                  ],
-                ).paddingRight(16),
+                      10.height,
+                    ],
+                  ).paddingRight(16),
+                ),
               );
             },
           ),

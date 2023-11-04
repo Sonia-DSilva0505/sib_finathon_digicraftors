@@ -55,17 +55,17 @@ class _BankingMenuState extends State<BankingMenu> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       5.height,
-                      Text("Manish Dayma",
+                      Text("Abhishek Sinha",
                           style: boldTextStyle(
                               color: Banking_TextColorPrimary, size: 18)),
                       5.height,
-                      Text("123 456 789",
+                      Text("1581 6994 5138",
                           style: primaryTextStyle(
                               color: Banking_TextColorSecondary,
                               size: 16,
                               fontFamily: fontMedium)),
                       5.height,
-                      Text(Banking_lbl_app_Name,
+                      Text("SIB Bank",
                           style: primaryTextStyle(
                               color: Banking_TextColorSecondary,
                               size: 16,

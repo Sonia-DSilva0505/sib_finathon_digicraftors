@@ -73,14 +73,14 @@ List<BankingSavingModel> bankingSavingList() {
   var list1 = BankingSavingModel(
       title: "Saving 1",
       date: "22 Apr 2020",
-      rs: "\$12,000",
+      rs: " ₹12,000",
       interest: "Interest 8 % - 8 Months");
   list.add(list1);
 
   var list2 = BankingSavingModel(
       title: "Saving 2",
       date: "22 Mar 2020",
-      rs: "\$20,000",
+      rs: " ₹20,000",
       interest: "Interest 4 % - 2 Months");
   list.add(list2);
 
@@ -148,6 +148,12 @@ List<BankingPaymentModel> bankingPaymentList() {
       color: Banking_greenLightColor);
   list.add(list11);
 
+   var list12 = BankingPaymentModel(
+      title: "FD",
+      img: Banking_ic_Ticket,
+      color: Banking_Primary);
+  list.add(list12);
+
   return list;
 }
 
@@ -168,15 +174,15 @@ List<BankingPaymentModel> bankingPaymentDetailList() {
 List<BankingCardModel> bankingCardList() {
   List<BankingCardModel> list = [];
   var list1 = BankingCardModel(
-      name: "Laura Smith", bank: "The Same Bank", rs: "12,500");
+      name: "Abhishek Sinha", bank: "South India Bank",  );
   list.add(list1);
 
   var list2 =
-      BankingCardModel(name: "Adam Johnson", bank: "Union Bank", rs: "18,000");
+      BankingCardModel(name: "Shantanu Sakpal", bank: "South India Bank", );
   list.add(list2);
 
   var list3 = BankingCardModel(
-      name: "Ana Willson", bank: "Unitied States Bank", rs: "50,000");
+      name: "Uday Mahajan", bank: "South India Bank", );
   list.add(list3);
 
   return list;
@@ -186,11 +192,11 @@ List<BankingPaymentHistoryModel> bankingHistoryList1() {
   List<BankingPaymentHistoryModel> list = [];
 
   var list1 = BankingPaymentHistoryModel(
-      title: "Payment Invoice # 7783", rs: "-\$200 USD");
+      title: "Payment Invoice # 7783", rs: "- ₹200 USD");
   list.add(list1);
 
   var list2 = BankingPaymentHistoryModel(
-      title: "Payment Invoice S1244", rs: "-\$190 USD");
+      title: "Payment Invoice S1244", rs: "- ₹1900");
   list.add(list2);
 
   return list;
@@ -237,11 +243,11 @@ List<BankingRateInfoModel> bankingRateInformationList() {
 List<BankingHomeModel> bankingHomeList1() {
   List<BankingHomeModel> list = [];
   var list1 = BankingHomeModel(
-      title: "Default Account", color: Banking_BalanceColor, bal: "+\$50 USD");
+      title: "Default Account", color: Banking_BalanceColor, bal: "+ ₹500");
   list.add(list1);
 
   var list2 = BankingHomeModel(
-      title: "Adam Johnson", color: Banking_Primary, bal: "-\$20 USD");
+      title: "Adam Johnson", color: Banking_Primary, bal: "- ₹200");
   list.add(list2);
 
   return list;
@@ -254,21 +260,21 @@ List<BankingHomeModel2> bankingHomeList2() {
       title: "Payment form Paypal",
       icon: Banking_ic_Paypal,
       color: Banking_greenLightColor,
-      charge: "+\$50 USD");
+      charge: "+ ₹500");
   list.add(list1);
 
   var list2 = BankingHomeModel2(
       title: "Mastercard Charge",
       icon: Banking_ic_MasterCard,
       color: Banking_Primary,
-      charge: "+\$20 USD");
+      charge: "+ ₹200");
   list.add(list2);
 
   var list3 = BankingHomeModel2(
       title: "Shopping at WallMart",
       icon: Banking_ic_Wallet,
       color: Banking_Primary,
-      charge: "+\$90 USD");
+      charge: "+ ₹900");
   list.add(list3);
 
   return list;

@@ -1,6 +1,6 @@
 // ignore_for_file: constant_identifier_names
 
-const Banking_lbl_app_Name = "Cy Capital Bank";
+const Banking_lbl_app_Name = "SIB Bank";
 const Banking_lbl_app_Sub_title = "Mobile Banking Apps";
 const Banking_lbl_Walk1Title = "Online Payment";
 const Banking_lbl_Walk2Title = "Quickly Tranfer";
