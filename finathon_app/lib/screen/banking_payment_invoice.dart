@@ -160,7 +160,7 @@ class _BankingPaymentInvoiceState extends State<BankingPaymentInvoice> {
                         .paddingOnly(
                             left: spacing_standard_new,
                             top: spacing_standard_new),
-                    Text("\$200",
+                    Text("₹200",
                             style: primaryTextStyle(
                                 color: Banking_TextColorPrimary,
                                 size: 18,

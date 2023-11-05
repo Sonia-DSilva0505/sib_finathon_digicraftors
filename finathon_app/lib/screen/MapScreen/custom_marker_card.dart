@@ -31,7 +31,7 @@ class MyCard extends StatelessWidget {
           ),
           const SizedBox(height: 2),
           Text(
-            'Amount: \$${expense.amount.toString()}',
+            'Amount: ₹${expense.amount.toString()}',
             style: const TextStyle(fontSize: 14),
           ),
           const SizedBox(height: 4),

@@ -99,12 +99,12 @@ class _BankingAddNewSavingState extends State<BankingAddNewSaving> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    Text('Amount(At least \$10)',
+                    Text('Amount(At least \10)',
                         style: primaryTextStyle(
                             color: Banking_TextColorSecondary,
                             size: 18,
                             fontFamily: fontRegular)),
-                    Text('\$1000',
+                    Text('₹1000',
                         style: primaryTextStyle(
                             color: Banking_TextColorPrimary,
                             size: 18,

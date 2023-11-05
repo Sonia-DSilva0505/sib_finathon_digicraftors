@@ -70,7 +70,7 @@ class _MutualFundsScreenState extends State<MutualFundsScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          '\$${mutualFunds[index].price.toStringAsFixed(2)}',
+                          '₹${mutualFunds[index].price.toStringAsFixed(2)}',
                           style: const TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,

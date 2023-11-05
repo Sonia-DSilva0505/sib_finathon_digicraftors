@@ -510,12 +510,12 @@ class _TrackingState extends State<Tracking>
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: investNowPage(
-                            context, 2, 'FD', 'images/banking/banner.jpg'),
+                            context, 2, 'FD', 'images/banking/banner1.jpg'),
                       ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: investNowPage(
-                            context, 3, 'Equity', 'images/banking/banner.jpg'),
+                            context, 3, 'Equity', 'images/banking/banner2.jpg'),
                       ),
                     ],
                   ),
